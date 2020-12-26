@@ -10,4 +10,6 @@ export const Button = styled.button`
   outline: none;
   background: ${props => props.background};
   box-shadow: 0 1px ${props => props.shadow};
+  color: ${props => props.textColor};
+  width: 100%;
 `;
