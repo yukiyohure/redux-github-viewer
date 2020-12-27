@@ -1,13 +1,12 @@
-import './App.css';
 import React from 'react';
 import { GlobalStyle } from './GlobalStyle';
+import Header from './components/organisms/Header';
 
 function App() {
   return (
     <div>
       <GlobalStyle />
-      <header>
-      </header>
+      <Header />
     </div>
   );
 }
