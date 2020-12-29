@@ -1,38 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { colors } from '../../variables';
+
+const HeaderContainer = styled.div`
+  display: flex;
+  align-items: cener;
+  background: ${colors.backgroundBlack};
+  padding: 1rem;
+`;
 
 const Title = styled.h1`
   white-space: nowrap;
+  font-size: 2rem;
+  a {
+    color: ${colors.white};
+  }
 `;
 
-const HeaderLinks = styled.ul`
+const HeaderLinkList = styled.ul`
   display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  width: 100%;
+  li {
+    margin-right: 1rem;
+    font-size: 1.1rem;
+  }
+  li > a {
+    color: ${colors.white};
+    font-size: 1.1rem;
+  }
 `;
 
 const links = [
-  {
-    text: 'Issue',
-    href: '#'
-  },
-  {
-    text:'Pull Request',
-    href: '#'
-  }
+  {to: '/issue', key: 'issue', linkText: 'Issue'},
+  {to: '/pull-request', key: 'pullRequest', linkText: 'Pull Request'}
 ];
 
 const Header = () => {
   return (
     <>
-    <div>
-      <Title>Github Viewer</Title>
-    </div>
-    <HeaderLinks>
-      {links.map((link) => {
-        return (
-          <a href={link.href}>{link.text}</a>
-        );
-      })}
-    </HeaderLinks>
+    <HeaderContainer>
+      <div>
+          <Title>
+            <Link to='/'>
+              Github Viewer
+            </Link>
+          </Title>
+      </div>
+      <HeaderLinkList>
+        {links.map((link) => {
+          return (
+            <li key={link.key}> {/* Reactが効率よく差分抽出できるように一意のkeyを渡してあげる */}
+              <Link to={link.to}>{link.linkText}</Link>
+            </li>
+          );
+        })}
+      </HeaderLinkList>
+    </HeaderContainer>
     </>
   );
 }
