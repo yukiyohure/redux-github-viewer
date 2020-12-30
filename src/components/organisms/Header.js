@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { colors } from '../../variables';
+import DropdownMenu from './DropdownMenu';
 
 const HeaderContainer = styled.div`
   display: flex;
   align-items: cener;
+  justify-content: space-between;
   background: ${colors.backgroundBlack};
   padding: 1rem;
 `;
@@ -52,12 +54,13 @@ const Header = () => {
       <HeaderLinkList>
         {links.map((link) => {
           return (
-            <li key={link.key}> {/* Reactが効率よく差分抽出できるように一意のkeyを渡してあげる */}
+            <li key={link.key}> {/* Reactが効率よくリストの差分抽出できるように一意のkeyを渡してあげる */}
               <Link to={link.to}>{link.linkText}</Link>
             </li>
           );
         })}
       </HeaderLinkList>
+      <DropdownMenu />
     </HeaderContainer>
     </>
   );
