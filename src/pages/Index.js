@@ -1,13 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-
-const TmpIndex = styled.h1`
-  white-space: nowrap;
-`;
+import React, { useState } from 'react';
+import IndexTemplate from '../components/templates/IndexTemplate';
 
 const Index = () => {
+  const tabs = [
+    {key: 'issue', label: 'Issue'},
+    {key: 'pullRequest', label: 'Pull Request'}
+  ];
+  const [selectedTab, changeTab] = useState('issue');
   return (
-    <TmpIndex>Index</TmpIndex>
+    <IndexTemplate tabs={tabs} selectedTab={selectedTab} onClick={changeTab} />
   );
 }
 

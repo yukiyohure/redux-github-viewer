@@ -1,5 +1,6 @@
 export const colors = {
   weak: '#586069',
+  border: '#e1e4e8',
   primary: '#42c360',
   primayShadow: '#55A846',
   hoverPrimary: '28a745',
