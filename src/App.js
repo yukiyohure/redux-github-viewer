@@ -2,8 +2,8 @@ import React from 'react';
 import { GlobalStyle } from './GlobalStyle';
 import Header from './components/organisms/Header';
 import { Route, Switch } from 'react-router-dom';
-import { Issue } from './components/templates/Issue';
-import { PullRequest } from './components/templates/PullRequest';
+import Issue from './pages/Issue';
+import PullRequest from './pages/PullRequest';
 import Index from './pages/Index.js';
 
 function App() {
