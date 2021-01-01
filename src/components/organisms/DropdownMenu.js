@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const MenuIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
-  color: ${colors.white}};
+  color: ${colors.white};
 `;
 
 const DropdownMenu = () => {
