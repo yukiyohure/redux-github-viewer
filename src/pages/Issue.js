@@ -1,9 +1,10 @@
 import React from 'react';
+import Issue from '../components/templates/Issue';
 
-const Issue = () => {
+const IssuePage = () => {
   return (
-    <h3>Issue</h3>
+    <Issue />
   );
 }
 
-export default Issue;
+export default IssuePage;

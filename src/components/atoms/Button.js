@@ -22,6 +22,10 @@ const BaseButton = styled.button`
     background: ${({hoverBackground}) => colors[hoverBackground]};
     box-shadow: 0 1px ${({hoverShadow}) => colors[hoverShadow]};
   }
+  &:active {
+    box-shadow: none;
+    transform: translateY(1px);
+  }
 `;
 
 

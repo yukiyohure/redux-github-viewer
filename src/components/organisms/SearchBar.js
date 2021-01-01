@@ -20,16 +20,16 @@ const ActionButtons = styled.div`
 const SearchBar = () => {
   return (
     <>
-    <Wrapper>
-      <h2>Issue</h2>
-      <SearchForm>
-        <TextInput />
-      </SearchForm>
-      <ActionButtons>
-        <Button hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />
-        <Button hoverBackground='hoverDanger' background='danger' textColor='white' shadow='dangerShadow' hoverShadow='hoverDangerShadow' label='Delete' />
-      </ActionButtons>
-    </Wrapper>
+      <Wrapper>
+        <h2>Issue</h2>
+        <SearchForm>
+          <TextInput />
+        </SearchForm>
+        <ActionButtons>
+          <Button hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />
+          <Button hoverBackground='hoverDanger' background='danger' textColor='white' shadow='dangerShadow' hoverShadow='hoverDangerShadow' label='Delete' />
+        </ActionButtons>
+      </Wrapper>
     </>
   );
 }
