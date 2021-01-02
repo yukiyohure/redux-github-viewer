@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // font-awesomeを使用するためのコンポーネント
 import { faBars } from '@fortawesome/free-solid-svg-icons'; // 実際に使用するアイコンを指定するコンポーネント
@@ -17,10 +17,16 @@ const MenuIcon = styled(FontAwesomeIcon)`
 `;
 
 const DropdownMenu = () => {
+  const [isShown, setShown] = useState(false);
+
+  const handleMenuClick = () => {
+    setShown(!isShown);
+  };
+
   return (
     <Container>
-      <MenuIcon icon={faBars} />
-      <Menu />
+      <MenuIcon onClick={handleMenuClick} icon={faBars} />
+      {isShown && <Menu />}
     </Container>
   );
 }
