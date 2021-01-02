@@ -8,6 +8,7 @@ import PullRequest from './PullRequest';
 const Container = styled.div`
   padding: 2rem 1rem;
   margin: 0 auto;
+  max-width: 896px;
 `;
 
 // 実際に表示するcomponentの配列

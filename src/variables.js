@@ -1,4 +1,5 @@
 export const colors = {
+  defaultText: '#333',
   weak: '#586069',
   border: '#e1e4e8',
   primary: '#42c360',
