@@ -14,19 +14,22 @@ const IssueTable = styled.table`
 
 const TableRow = styled.tr`
   cursor: pointer;
+  &:hover {
+    background: rgba(198, 218, 230, 0.25);
+  }
+
+  &:last-child > td {
+    border-bottom: none;
+  }
+
   th, td {
     padding: .5rem;
     text-align: left;
     min-width: 10rem;
     border-bottom: 1px solid ${colors.border};
   }
-
   th:first-child, td:first-child {
     min-width: auto;
-  }
-
-  &:hover {
-    background: rgba(198, 218, 230, 0.25);
   }
 `;
 
