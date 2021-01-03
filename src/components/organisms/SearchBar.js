@@ -23,7 +23,7 @@ const SearchBar = () => {
       <Wrapper>
         <h2>Issue</h2>
         <SearchForm>
-          <TextInput />
+          <TextInput placeholder='issue名で検索' />
         </SearchForm>
         <ActionButtons>
           <Button hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />

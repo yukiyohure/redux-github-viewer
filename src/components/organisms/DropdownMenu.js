@@ -26,7 +26,7 @@ const DropdownMenu = () => {
   return (
     <Container>
       <MenuIcon onClick={handleMenuClick} icon={faBars} />
-      {isShown && <Menu />}
+      {isShown && <Menu onClick={handleMenuClick} />}
     </Container>
   );
 }

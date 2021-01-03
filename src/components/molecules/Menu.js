@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../variables';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -31,20 +32,24 @@ const MenuItem = styled.li`
   }
 `;
 
-const Menu = () => {
+const Menu = ({onClick}) => {
   return (
     <Wrapper>
       <ul>
         {MenuLinks.map(({key, label, to}) => {
           return (
             <MenuItem key={key}>
-              <Link to={to}>{label}</Link>
+              <Link to={to} onClick={onClick}>{label}</Link>
             </MenuItem>
           );
         })}
       </ul>
     </Wrapper>
   );
+}
+
+Menu.propTypes = {
+  onClick: PropTypes.func
 }
 
 export default Menu;
