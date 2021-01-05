@@ -29,7 +29,7 @@ const BaseButton = styled.button`
 `;
 
 
-const Button = ({textColor, background, hoverBackground, shadow, hoverShadow, label}) => {
+const Button = ({textColor, background, hoverBackground, shadow, hoverShadow, label, onClick}) => {
   return (
     <BaseButton
       textColor={textColor}
@@ -37,6 +37,7 @@ const Button = ({textColor, background, hoverBackground, shadow, hoverShadow, la
       hoverBackground={hoverBackground}
       shadow={shadow}
       hoverShadow={hoverShadow}
+      onClick={() => onClick()}
     >{label}</BaseButton>
   );
 }
@@ -47,7 +48,8 @@ Button.propTypes = {
   hoverBackground: PropTypes.string,
   shadow: PropTypes.string,
   hoverShadow: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 

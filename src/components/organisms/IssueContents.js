@@ -18,6 +18,7 @@ const TableRow = styled.tr`
     background: rgba(198, 218, 230, 0.25);
   }
 
+  /* 最後の行のtdにかかっているborder-bottomを削除しないと、table自体のborderとの間に変な隙間があるように見える */
   &:last-child > td {
     border-bottom: none;
   }
@@ -54,7 +55,7 @@ const IssueRows = [
     updatedAt: '01-01-2021'
   },
   {
-    id: '2',
+    id: '3',
     title:'fix layout',
     explanation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     status: 'Open',
