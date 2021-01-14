@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
-Modal.setAppElement("#root"); // よくわかってない
+Modal.setAppElement("#root"); // アクセシビリティのため
 
 const ModalWrapper = ({isOpen, component, onRequestClose}) => {
   return (

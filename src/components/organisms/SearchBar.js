@@ -3,6 +3,7 @@ import TextInput from '../atoms/TextInput';
 import styled from 'styled-components';
 import Button from '../atoms/Button';
 import ModalWrapper from './ModalWrapper';
+import NewIssue from '../templates/NewIssue';
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ const SearchBar = () => {
   return (
     <>
       <Wrapper>
-        <ModalWrapper isOpen={isModalOpen} onRequestClose={handleClose} component={<h1>helloo</h1>} />
+        <ModalWrapper isOpen={isModalOpen} onRequestClose={handleClose} component={<NewIssue />} />
         <h2>Issue</h2>
         <SearchForm>
           <TextInput placeholder='issue名で検索' />
