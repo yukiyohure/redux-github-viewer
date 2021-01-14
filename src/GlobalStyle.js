@@ -30,4 +30,10 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  ${'' /* React-modalのcontent部分のスタイリングはReactModal__Contentクラスを指定する */}
+  .ReactModal__Content {
+    margin: auto;
+    width: 60%;
+  }
 `;

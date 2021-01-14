@@ -31,7 +31,7 @@ const CloseButton = styled.a`
   text-align: center;
 `;
 
-const Actions = styled.div`
+const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -56,7 +56,7 @@ const NewIssue = () => {
           <TextArea placeholder="説明を入力してください" />
         </Field>
       </InputSection>
-      <Actions>
+      <Footer>
         <Button
           hoverBackground="hoverPrimary"
           background="primary"
@@ -66,7 +66,7 @@ const NewIssue = () => {
           label="作成"
         />
         <CloseButton >閉じる</CloseButton>
-      </Actions>
+      </Footer>
     </Wrapper>
   );
 }
