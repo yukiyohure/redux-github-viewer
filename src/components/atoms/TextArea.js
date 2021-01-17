@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import { colors } from "../../variables";
 
 // テキストエリア入力欄のスタイリング
-const TextAreaInput = styled.input`
+const TextAreaInput = styled.textarea`
   outline: none;
   border: none;
   background: none;
   padding: 0.5rem;
   font-size: 1rem;
   width: 100%;
+  min-height: 150px;
 `;
 
 const Wrapper = styled.div`
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
 const TextArea = ({ placeholder, value }) => {
   return (
     <Wrapper>
-      <TextAreaInput type="text" placeholder={placeholder} value={value} />
+      <TextAreaInput placeholder={placeholder} value={value} />
     </Wrapper>
   );
 };

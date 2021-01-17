@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { colors } from './variables';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -29,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+    color: ${colors.linkText};
   }
 
   ${'' /* React-modalのcontent部分のスタイリングはReactModal__Contentクラスを指定する */}
