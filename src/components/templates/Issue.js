@@ -8,7 +8,8 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const Issue = () => {
+const Issue = (props) => {
+  console.log(props); // なぜstoreを取得できない？？？
   return (
     <>
     <Wrapper>

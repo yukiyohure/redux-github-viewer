@@ -1,5 +1,5 @@
 import React from 'react';
-import Issue from '../components/templates/Issue';
+import Issue from '../containers/Issue';
 
 const IssuePage = () => {
   return (

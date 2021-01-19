@@ -42,12 +42,12 @@ const issueReducer = (state = initialState, action) => {
   const newData = {...data}; // 新しいデータのための「枠」を作成(今までのデータを引き継ぐ)
 
   switch (action.type) {
-    case 'ISSUEADD':
+    case 'ADD_ISSUE':
       newData[newIndex] = {...action.payload, id:newIndex}; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return {index: newIndex, data: newData};
-    case 'ISSUEUPDATE':
+    case 'UPDATE_ISSUE':
       return;
-    case 'ISSUEREMOVE':
+    case 'REMOVE_ISSUE':
       return;
     default:
       return state;
