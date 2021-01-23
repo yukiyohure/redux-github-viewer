@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../variables';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   overflow: scroll;
@@ -34,38 +35,7 @@ const TableRow = styled.tr`
   }
 `;
 
-// 仮置きデータ
-const IssueRows = [
-  {
-    id: '1',
-    title:'A bug in Top Page',
-    explanation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    status: 'Open',
-    author: '',
-    createdAt: '01-01-2021',
-    updatedAt: '01-01-2021'
-  },
-  {
-    id: '2',
-    title:'A problem of performance in Top Page',
-    explanation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    status: 'Open',
-    author: '',
-    createdAt: '01-01-2021',
-    updatedAt: '01-01-2021'
-  },
-  {
-    id: '3',
-    title:'fix layout',
-    explanation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    status: 'Open',
-    author: '',
-    createdAt: '01-01-2021',
-    updatedAt: '01-01-2021'
-  },
-];
-
-const IssueContent = () =>{
+const IssueContent = ({issueData}) =>{
   return (
     <>
       <Wrapper>
@@ -83,8 +53,8 @@ const IssueContent = () =>{
             </TableRow>
           </thead>
           <tbody>
-            {IssueRows.length ?
-              IssueRows.map((row) => {
+            {issueData.length ?
+              issueData.map((row) => {
                 return (
                   <TableRow key={row.id}>
                     <td>
@@ -93,8 +63,8 @@ const IssueContent = () =>{
                     <td>{row.title}</td>
                     <td>{row.status}</td>
                     <td>{row.author}</td>
-                    <td>{row.createdAt}</td>
-                    <td>{row.updatedAt}</td>
+                    <td>01-01-2021</td>
+                    <td>01-01-2021</td>
                   </TableRow>
                 )
               }) : <TableRow><td>データがありません</td></TableRow>
@@ -104,6 +74,10 @@ const IssueContent = () =>{
       </Wrapper>
     </>
   )
+}
+
+IssueContent.propTypes = {
+  issueData: PropTypes.array
 }
 
 export default IssueContent;
