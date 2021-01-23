@@ -6,7 +6,7 @@ import IssuePage from './pages/Issue';
 import PullRequest from './pages/PullRequest';
 import Index from './pages/Index.js';
 import styled from 'styled-components';
-import Profile from './pages/Profile';
+import Profile from './containers/Profile';
 
 const ContentWrapper = styled.div`
   padding: 2rem 1rem;
