@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchBar from '../organisms/SearchBar';
 import styled from 'styled-components';
 import IssueContents from '../organisms/IssueContents';
@@ -9,12 +9,18 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const Issue = ({issueData}) => {
+const Issue = ({issueData}) => { // STOREからissueDataを受け取る
+  const [searchWord, setSearchWord] = useState('');
+
+  const filterdIssueData = issueData.filter(item => {
+    return item.title.includes(searchWord);
+  });
+
   return (
     <>
       <Wrapper>
-        <SearchBar />
-        <IssueContents issueData={issueData} />
+        <SearchBar searchWord={searchWord} onChange={setSearchWord} />
+        <IssueContents issueData={filterdIssueData} />
       </Wrapper>
     </>
   );
