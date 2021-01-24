@@ -5,8 +5,12 @@ import Profile from '../pages/Profile';
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.profile
   }
 }
 
-export default connect(mapStateToProps, null)(Profile);
+const mapDispatchToProps = () => {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../variables';
+import PropTypes from 'prop-types';
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -32,14 +33,7 @@ const ProfileWrapper = styled.div`
   padding: 1rem;
 `;
 
-// 仮置きデータ(後にreduxで管理する)
-const user = {
-  profileUrl:'https://avatars1.githubusercontent.com/u/25723193?s=60&u=5f2d871352830fdf1a79ee285e0712044105ca91&v=4',
-  userName:'yukiyohure',
-  email:'example@mock.com',
-}
-
-const Profile = () => {
+const Profile = ({ user }) => {
   return (
     <ProfileWrapper>
       <h1>Profile</h1>
@@ -63,6 +57,10 @@ const Profile = () => {
       </ProfileContainer>
     </ProfileWrapper>
   );
+}
+
+Profile.propTypes = {
+  user: PropTypes.object
 }
 
 export default Profile;

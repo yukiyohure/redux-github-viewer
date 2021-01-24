@@ -7,6 +7,7 @@ Modal.setAppElement("#root"); // アクセシビリティのために宣言
 const ModalWrapper = ({isOpen, component, onRequestClose}) => {
   return (
     <>
+      {/* onRequestCloseに渡した関数は、モーダルの外側をクリックしたときに実行される */}
       {isOpen && <Modal isOpen={isOpen} onRequestClose={onRequestClose}>{component}</Modal>}
     </>
   );
