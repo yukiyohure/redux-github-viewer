@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 Modal.setAppElement("#root"); // アクセシビリティのために宣言
 
-const ModalWrapper = ({isOpen, component, onRequestClose}) => {
+const ModalWrapper = ({isOpen, component, hideModal}) => {
   return (
     <>
       {/* onRequestCloseに渡した関数は、モーダルの外側をクリックしたときに実行される */}
-      {isOpen && <Modal isOpen={isOpen} onRequestClose={onRequestClose}>{component}</Modal>}
+      {isOpen && <Modal onRequestClose={hideModal} isOpen={isOpen}>{component}</Modal>}
     </>
   );
 }
@@ -16,7 +16,7 @@ const ModalWrapper = ({isOpen, component, onRequestClose}) => {
 ModalWrapper.propTypes = {
   isOpen: PropTypes.bool,
   component: PropTypes.object,
-  onRequestClose: PropTypes.func,
+  hideModal: PropTypes.func
 }
 
 export default ModalWrapper;

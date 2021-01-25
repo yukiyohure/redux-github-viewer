@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TextInput from '../atoms/TextInput';
 import TextArea from "../atoms/TextArea";
 import Button from '../atoms/Button';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -42,7 +43,7 @@ const Footer = styled.div`
 `;
 
 
-const NewIssue = () => {
+const NewIssue = ({hideModal}) => {
   return (
     <Wrapper>
       <h2>Issueを追加</h2>
@@ -65,10 +66,14 @@ const NewIssue = () => {
           hoverShadow="hoverPrimaryShadow"
           label="作成"
         />
-        <CloseButton >閉じる</CloseButton>
+        <CloseButton onClick={() => hideModal()} >閉じる</CloseButton>
       </Footer>
     </Wrapper>
   );
+}
+
+NewIssue.propTypes = {
+  hideModal: PropTypes.func
 }
 
 export default NewIssue;

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextInput from '../atoms/TextInput';
 import styled from 'styled-components';
 import Button from '../atoms/Button';
-import ModalWrapper from './ModalWrapper';
-import NewIssue from '../templates/NewIssue';
 import PropTypes from 'prop-types';
+import NewIssue from '../templates/NewIssue';
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,26 +19,16 @@ const ActionButtons = styled.div`
   display: flex;
 `;
 
-const SearchBar = ({searchWord, onChange}) => {
-  // モーダル開閉のstate管理
-  const [isModalOpen, changeIsModalOpen] = useState(false);
-  const handleClose = () => { // モーダル閉じる
-    changeIsModalOpen(false);
-  }
-  const handleOpen = () => { // モーダル開く
-    changeIsModalOpen(true);
-  }
-
+const SearchBar = ({searchWord, onChange, showModal, hideModal}) => {
   return (
     <>
       <Wrapper>
-        <ModalWrapper isOpen={isModalOpen} onRequestClose={handleClose} component={<NewIssue />} />
         <h2>Issue</h2>
         <SearchForm>
           <TextInput placeholder='issue名で検索' value={searchWord} onChange={onChange} />
         </SearchForm>
         <ActionButtons>
-          <Button onClick={handleOpen} hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />
+          <Button onClick={() => showModal({component: <NewIssue hideModal={() => hideModal()}/>})} hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />
           <Button hoverBackground='hoverDanger' background='danger' textColor='white' shadow='dangerShadow' hoverShadow='hoverDangerShadow' label='Delete' />
         </ActionButtons>
       </Wrapper>
@@ -49,7 +38,9 @@ const SearchBar = ({searchWord, onChange}) => {
 
 SearchBar.propTypes = {
   searchWord: PropTypes.string,
-  onChange: PropTypes.func
-}
+  onChange: PropTypes.func,
+  showModal: PropTypes.func,
+  hideModal: PropTypes.func,
+};
 
 export default SearchBar;

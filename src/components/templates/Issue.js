@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const Issue = ({issueData}) => { // STOREからissueDataを受け取る
+const Issue = ({issueData, addIssue, showModal, hideModal}) => { // STOREからissueDataを受け取る
   const [searchWord, setSearchWord] = useState('');
 
   const filterdIssueData = issueData.filter(item => {
@@ -19,7 +19,7 @@ const Issue = ({issueData}) => { // STOREからissueDataを受け取る
   return (
     <>
       <Wrapper>
-        <SearchBar searchWord={searchWord} onChange={setSearchWord} />
+        <SearchBar showModal={showModal} addIssue={addIssue} searchWord={searchWord} onChange={setSearchWord} hideModal={hideModal} />
         <IssueContents issueData={filterdIssueData} />
       </Wrapper>
     </>
@@ -28,6 +28,9 @@ const Issue = ({issueData}) => { // STOREからissueDataを受け取る
 
 Issue.propTypes = {
   issueData: PropTypes.array,
-}
+  addIssue: PropTypes.func,
+  showModal: PropTypes.func,
+  hideModal: PropTypes.func,
+};
 
 export default Issue;
