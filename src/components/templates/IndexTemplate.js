@@ -1,7 +1,7 @@
 import React from 'react';
 import TabHeader from '../organisms/TabHeader';
 import PropTypes from 'prop-types';
-import Issue from './Issue';
+import Issue from '../../containers/Issue';
 import PullRequest from './PullRequest';
 
 // 実際に表示するcomponentの配列
