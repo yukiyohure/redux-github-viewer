@@ -20,10 +20,10 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const TextArea = ({ placeholder, value }) => {
+const TextArea = ({ placeholder, value, onChange}) => {
   return (
     <Wrapper>
-      <TextAreaInput placeholder={placeholder} value={value} />
+      <TextAreaInput placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)}/>
     </Wrapper>
   );
 };
@@ -31,6 +31,7 @@ const TextArea = ({ placeholder, value }) => {
 TextArea.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default TextArea;

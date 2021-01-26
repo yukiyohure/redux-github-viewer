@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextInput from '../atoms/TextInput';
 import TextArea from "../atoms/TextArea";
@@ -43,18 +43,22 @@ const Footer = styled.div`
 `;
 
 
-const NewIssue = ({hideModal}) => {
+const NewIssue = ({hideModal, addIssue}) => {
+  const [issueTitle, setIssueTitle] = useState('');
+  const [issueDescription, setIssueDescription] = useState('');
+  console.log(issueTitle);
+  console.log(issueDescription);
   return (
     <Wrapper>
       <h2>Issueを追加</h2>
       <InputSection>
         <Field>
           <FieldLabel>タイトル</FieldLabel>
-          <TextInput placeholder="タイトルを入力してください" />
+          <TextInput placeholder="タイトルを入力してください" onChange={setIssueTitle} />
         </Field>
         <Field>
           <FieldLabel>説明</FieldLabel>
-          <TextArea placeholder="説明を入力してください" />
+          <TextArea placeholder="説明を入力してください" onChange={setIssueDescription} />
         </Field>
       </InputSection>
       <Footer>
@@ -73,7 +77,8 @@ const NewIssue = ({hideModal}) => {
 }
 
 NewIssue.propTypes = {
-  hideModal: PropTypes.func
+  hideModal: PropTypes.func,
+  addIssue: PropTypes.func
 }
 
 export default NewIssue;

@@ -19,7 +19,7 @@ const ActionButtons = styled.div`
   display: flex;
 `;
 
-const SearchBar = ({searchWord, onChange, showModal, hideModal}) => {
+const SearchBar = ({addIssue, searchWord, onChange, showModal, hideModal}) => {
   return (
     <>
       <Wrapper>
@@ -28,7 +28,7 @@ const SearchBar = ({searchWord, onChange, showModal, hideModal}) => {
           <TextInput placeholder='issue名で検索' value={searchWord} onChange={onChange} />
         </SearchForm>
         <ActionButtons>
-          <Button onClick={() => showModal({component: <NewIssue hideModal={() => hideModal()}/>})} hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />
+          <Button onClick={() => showModal({component: <NewIssue addIssue={addIssue} hideModal={() => hideModal()}/>})} hoverBackground='hoverPrimary' background='primary' textColor='white' shadow='primaryShadow' hoverShadow='hoverPrimaryShadow' label='New' />
           <Button hoverBackground='hoverDanger' background='danger' textColor='white' shadow='dangerShadow' hoverShadow='hoverDangerShadow' label='Delete' />
         </ActionButtons>
       </Wrapper>
@@ -41,6 +41,7 @@ SearchBar.propTypes = {
   onChange: PropTypes.func,
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
+  addIssue: PropTypes.func
 };
 
 export default SearchBar;

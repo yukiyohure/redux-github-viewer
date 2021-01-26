@@ -19,7 +19,11 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const TextInput = ({placeholder, value, onChange}) => {
+const TextInput = ({
+  placeholder,
+  value,
+  onChange
+}) => {
   return (
     <Wrapper>
       <Text type='text' placeholder={placeholder} value={value} onChange={e => onChange(e.target.value)} />
