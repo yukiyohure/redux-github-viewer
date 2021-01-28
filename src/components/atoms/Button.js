@@ -37,7 +37,7 @@ const Button = ({textColor, background, hoverBackground, shadow, hoverShadow, la
       hoverBackground={hoverBackground}
       shadow={shadow}
       hoverShadow={hoverShadow}
-      onClick={() => onClick()}
+      onClick={onClick} // 即時巻数を渡すと毎回余計にレンダーしてしまうので関数をそのまま渡してあげる。
     >{label}</BaseButton>
   );
 }
