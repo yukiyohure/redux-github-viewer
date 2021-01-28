@@ -39,7 +39,7 @@ const issueReducer = (state = initialState, action) => {
   // newIndex: 新しいstateのindexキーの中身
   // newData: 新しいstateのdataキーの中身
   const newIndex = index + 1; // indexに1を加算して'ISSUEADD'で追加する要素のためのindexを用意する。
-  const newData = {...data}; // 新しいデータのための「枠」を作成(今までのデータを引き継ぐ)
+  const newData = [...data]; // 新しいデータのための「枠」を作成(今までのデータを引き継ぐ)
 
   switch (action.type) {
     case 'ADD_ISSUE':
