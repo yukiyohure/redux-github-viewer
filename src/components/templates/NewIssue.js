@@ -17,7 +17,7 @@ const InputSection = styled.div`
 
 const MessageContainer = styled.section`
   padding: 1rem;
-  min-height: 119px; /* エラー分が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておこう。*/
+  min-height: 119px; /* エラー文が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておこう。*/
 `;
 
 const FieldLabel = styled.label`
@@ -48,24 +48,22 @@ const Footer = styled.div`
   }
 `;
 
-const validate = (value, errorMessage) => {
+// 入力チェックバリデーション
+const validateRequired = (value, errorMessage) => {
   return value === "" ? errorMessage : "";
 };
 
 const NewIssue = ({ hideModal, addIssue }) => {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
-  // const [titleValidationError, setTitleValidationError] = useState("");
-  // const [descriptionValidationError, setDescriptionValidationError] = useState('');
   const [errors, setErrors] = useState({ title: "", description: "" });
 
   const _addIssue = () => {
-    const titleError = validate(issueTitle, "タイトルを入力してください");
-    const descriptionError = validate(
-      issueDescription,
-      "説明を入力してください"
-    );
+    // バリデーションは種類ごとに関数で切り分けて、拡張性を重視してみる(1種類しかないけど)
+    const titleError = validateRequired(issueTitle, "タイトルを入力してください");
+    const descriptionError = validateRequired(issueDescription, "説明を入力してください");
 
+    // エラーがあった場合は早期リターンでdispatchさせない
     if (titleError || descriptionError) {
       setErrors({ title: titleError, description: descriptionError });
       return;
@@ -81,7 +79,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
       updatedAt: date,
     };
     addIssue(payload);
-    hideModal(); // issueの追加が終わったらモーダルを閉じる
+    hideModal(); // issueの追加処理が終わったらモーダルを閉じる
   };
 
   return (
