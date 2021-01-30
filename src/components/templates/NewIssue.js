@@ -4,6 +4,7 @@ import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
 import Button from "../atoms/Button";
 import PropTypes from "prop-types";
+import ErrorMessage from "../atoms/ErrorMessage";
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -12,6 +13,11 @@ const Wrapper = styled.div`
 
 const InputSection = styled.div`
   padding: 2rem 0 1rem;
+`;
+
+const MessageContainer = styled.section`
+  padding: 1rem;
+  min-height: 119px; /* エラー分が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておこう。*/
 `;
 
 const FieldLabel = styled.label`
@@ -42,11 +48,29 @@ const Footer = styled.div`
   }
 `;
 
+const validate = (value, errorMessage) => {
+  return value === "" ? errorMessage : "";
+};
+
 const NewIssue = ({ hideModal, addIssue }) => {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
+  // const [titleValidationError, setTitleValidationError] = useState("");
+  // const [descriptionValidationError, setDescriptionValidationError] = useState('');
+  const [errors, setErrors] = useState({ title: "", description: "" });
 
   const _addIssue = () => {
+    const titleError = validate(issueTitle, "タイトルを入力してください");
+    const descriptionError = validate(
+      issueDescription,
+      "説明を入力してください"
+    );
+
+    if (titleError || descriptionError) {
+      setErrors({ title: titleError, description: descriptionError });
+      return;
+    }
+
     const date = new Date();
     const payload = {
       title: issueTitle,
@@ -79,6 +103,12 @@ const NewIssue = ({ hideModal, addIssue }) => {
           />
         </Field>
       </InputSection>
+      <MessageContainer>
+        {errors.title && <ErrorMessage message={errors.title}></ErrorMessage>}
+        {errors.description && (
+          <ErrorMessage message={errors.description}></ErrorMessage>
+        )}
+      </MessageContainer>
       <Footer>
         <Button
           hoverBackground="hoverPrimary"

@@ -8,6 +8,7 @@ export const colors = {
   hoverPrimaryShadow: '#208437',
   danger: '#d73a49',
   dangerShadow: '#AF2D2A',
+  dangerBackground: '#F1BABF',
   hoverDanger: '#af1c2a',
   hoverDangerShadow: '#671019',
   backgroundBlack: '#333',
