@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { colors } from './variables';
+import { createGlobalStyle } from "styled-components";
+import { colors } from "./variables";
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -33,7 +33,9 @@ export const GlobalStyle = createGlobalStyle`
     color: ${colors.linkText};
   }
 
-  ${'' /* React-modalのcontent部分のスタイリングはReactModal__Contentクラスを指定する */}
+  ${
+    "" /* React-modalのcontent部分のスタイリングはReactModal__Contentクラスを指定する */
+  }
   .ReactModal__Content {
     margin: auto;
     width: 60%;

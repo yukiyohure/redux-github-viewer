@@ -1,10 +1,8 @@
-import React from 'react';
-import Issue from '../containers/Issue';
+import React from "react";
+import Issue from "../containers/Issue";
 
 const IssuePage = () => {
-  return (
-    <Issue />
-  );
-}
+  return <Issue />;
+};
 
 export default IssuePage;

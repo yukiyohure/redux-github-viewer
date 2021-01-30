@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { colors } from '../../variables';
-import DropdownMenu from './DropdownMenu';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { colors } from "../../variables";
+import DropdownMenu from "./DropdownMenu";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -36,34 +36,34 @@ const HeaderLinkList = styled.ul`
 `;
 
 const links = [
-  {to: '/issue', key: 'issue', linkText: 'Issue'},
-  {to: '/pull-request', key: 'pullRequest', linkText: 'Pull Request'}
+  { to: "/issue", key: "issue", linkText: "Issue" },
+  { to: "/pull-request", key: "pullRequest", linkText: "Pull Request" },
 ];
 
 const Header = () => {
   return (
     <>
-    <HeaderContainer>
-      <div>
+      <HeaderContainer>
+        <div>
           <Title>
-            <Link to='/'>
-              Github Viewer
-            </Link>
+            <Link to="/">Github Viewer</Link>
           </Title>
-      </div>
-      <HeaderLinkList>
-        {links.map((link) => {
-          return (
-            <li key={link.key}> {/* Reactが効率よくリストの差分抽出できるように一意のkeyを渡してあげる */}
-              <Link to={link.to}>{link.linkText}</Link>
-            </li>
-          );
-        })}
-      </HeaderLinkList>
-      <DropdownMenu />
-    </HeaderContainer>
+        </div>
+        <HeaderLinkList>
+          {links.map((link) => {
+            return (
+              <li key={link.key}>
+                {" "}
+                {/* Reactが効率よくリストの差分抽出できるように一意のkeyを渡してあげる */}
+                <Link to={link.to}>{link.linkText}</Link>
+              </li>
+            );
+          })}
+        </HeaderLinkList>
+        <DropdownMenu />
+      </HeaderContainer>
     </>
   );
-}
+};
 
 export default Header;

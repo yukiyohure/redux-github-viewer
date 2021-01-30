@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
-import ModalWrapper from '../components/organisms/ModalWrapper';
-import { hideModal } from '../actions';
+import { connect } from "react-redux";
+import ModalWrapper from "../components/organisms/ModalWrapper";
+import { hideModal } from "../actions";
 
 const mapStateToProps = (state) => {
   return {
     isOpen: state.modal.isOpen,
-    component: state.modal.component
-  }
-}
+    component: state.modal.component,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,9 +15,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(hideModal());
     },
   };
-}
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ModalWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalWrapper);
