@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { colors } from '../../variables';
-import PropTypes from 'prop-types';
+import React from "react";
+import styled from "styled-components";
+import { colors } from "../../variables";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   overflow: scroll;
@@ -24,18 +24,20 @@ const TableRow = styled.tr`
     border-bottom: none;
   }
 
-  th, td {
-    padding: .5rem;
+  th,
+  td {
+    padding: 0.5rem;
     text-align: left;
     min-width: 10rem;
     border-bottom: 1px solid ${colors.border};
   }
-  th:first-child, td:first-child {
+  th:first-child,
+  td:first-child {
     min-width: auto;
   }
 `;
 
-const IssueContent = ({issueData}) =>{
+const IssueContent = ({ issueData }) => {
   return (
     <>
       <Wrapper>
@@ -43,7 +45,7 @@ const IssueContent = ({issueData}) =>{
           <thead>
             <TableRow>
               <th>
-                <input type='checkbox' />
+                <input type="checkbox" />
               </th>
               <th></th>
               <th>ステータス</th>
@@ -53,12 +55,12 @@ const IssueContent = ({issueData}) =>{
             </TableRow>
           </thead>
           <tbody>
-            {issueData.length ?
+            {issueData.length ? (
               issueData.map((row) => {
                 return (
                   <TableRow key={row.id}>
                     <td>
-                      <input type='checkbox' />
+                      <input type="checkbox" />
                     </td>
                     <td>{row.title}</td>
                     <td>{row.status}</td>
@@ -66,18 +68,22 @@ const IssueContent = ({issueData}) =>{
                     <td>01-01-2021</td>
                     <td>01-01-2021</td>
                   </TableRow>
-                )
-              }) : <TableRow><td>データがありません</td></TableRow>
-            }
+                );
+              })
+            ) : (
+              <TableRow>
+                <td>データがありません</td>
+              </TableRow>
+            )}
           </tbody>
         </IssueTable>
       </Wrapper>
     </>
-  )
-}
+  );
+};
 
 IssueContent.propTypes = {
-  issueData: PropTypes.array
-}
+  issueData: PropTypes.array,
+};
 
 export default IssueContent;

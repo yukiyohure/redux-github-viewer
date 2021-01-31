@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { colors } from '../variables';
-import PropTypes from 'prop-types';
+import React from "react";
+import styled from "styled-components";
+import { colors } from "../variables";
+import PropTypes from "prop-types";
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ const Profile = ({ user }) => {
         <ProfilePicture>
           <Label>プロフィール</Label>
           <ProfileItem>
-            <img src={user.profileUrl} alt='profile' />
+            <img src={user.profileUrl} alt="profile" />
           </ProfileItem>
         </ProfilePicture>
         <ProfileInformation>
@@ -57,10 +57,10 @@ const Profile = ({ user }) => {
       </ProfileContainer>
     </ProfileWrapper>
   );
-}
+};
 
 Profile.propTypes = {
-  user: PropTypes.object
-}
+  user: PropTypes.object,
+};
 
 export default Profile;

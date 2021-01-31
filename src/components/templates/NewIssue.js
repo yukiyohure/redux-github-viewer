@@ -4,6 +4,7 @@ import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
 import Button from "../atoms/Button";
 import PropTypes from "prop-types";
+import ErrorMessage from "../atoms/ErrorMessage";
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -12,6 +13,11 @@ const Wrapper = styled.div`
 
 const InputSection = styled.div`
   padding: 2rem 0 1rem;
+`;
+
+const MessageContainer = styled.section`
+  padding: 1rem;
+  min-height: 119px; /* エラー文が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておこう。*/
 `;
 
 const FieldLabel = styled.label`
@@ -42,11 +48,27 @@ const Footer = styled.div`
   }
 `;
 
+// 入力チェックバリデーション
+const validateRequired = (value, errorMessage) => {
+  return value === "" ? errorMessage : "";
+};
+
 const NewIssue = ({ hideModal, addIssue }) => {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
+  const [errors, setErrors] = useState({ title: "", description: "" });
 
   const _addIssue = () => {
+    // バリデーションは種類ごとに関数で切り分けて、拡張性を重視してみる(1種類しかないけど)
+    const titleError = validateRequired(issueTitle, "タイトルを入力してください");
+    const descriptionError = validateRequired(issueDescription, "説明を入力してください");
+
+    // エラーがあった場合は早期リターンでdispatchさせない
+    if (titleError || descriptionError) {
+      setErrors({ title: titleError, description: descriptionError });
+      return;
+    }
+
     const date = new Date();
     const payload = {
       title: issueTitle,
@@ -57,7 +79,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
       updatedAt: date,
     };
     addIssue(payload);
-    hideModal(); // issueの追加が終わったらモーダルを閉じる
+    hideModal(); // issueの追加処理が終わったらモーダルを閉じる
   };
 
   return (
@@ -79,6 +101,12 @@ const NewIssue = ({ hideModal, addIssue }) => {
           />
         </Field>
       </InputSection>
+      <MessageContainer>
+        {errors.title && <ErrorMessage message={errors.title}></ErrorMessage>}
+        {errors.description && (
+          <ErrorMessage message={errors.description}></ErrorMessage>
+        )}
+      </MessageContainer>
       <Footer>
         <Button
           hoverBackground="hoverPrimary"
