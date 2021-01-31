@@ -1,3 +1,5 @@
+import { ADD_ISSUE, EDIT_ISSUE } from "../actions";
+
 const mockData = [
   {
     id: "1",
@@ -42,11 +44,12 @@ const issueReducer = (state = initialState, action) => {
   const newData = [...data]; // 新しいデータのための「枠」を作成(今までのデータを引き継ぐ)
 
   switch (action.type) {
-    case "ADD_ISSUE":
+    case ADD_ISSUE:
       newData[newIndex] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return { index: newIndex, data: newData };
-    case "UPDATE_ISSUE":
-      return;
+    case EDIT_ISSUE:
+      newData[action.payload.id - 1] = action.payload;
+      return { ...state, data: [...newData] };
     case "REMOVE_ISSUE":
       return;
     default:

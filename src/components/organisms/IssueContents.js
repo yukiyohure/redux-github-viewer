@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../variables";
 import PropTypes from "prop-types";
+import EditIssue from "../templates/EditIssue";
 
 const Wrapper = styled.div`
   overflow: scroll;
@@ -37,7 +38,7 @@ const TableRow = styled.tr`
   }
 `;
 
-const IssueContent = ({ issueData }) => {
+const IssueContents = ({ issueData, showModal, hideModal, editIssue }) => {
   return (
     <>
       <Wrapper>
@@ -58,7 +59,20 @@ const IssueContent = ({ issueData }) => {
             {issueData.length ? (
               issueData.map((row) => {
                 return (
-                  <TableRow key={row.id}>
+                  <TableRow
+                    key={row.id}
+                    onClick={() =>
+                      showModal({
+                        component: (
+                          <EditIssue
+                            issue={row}
+                            hideModal={hideModal}
+                            editIssue={editIssue}
+                          />
+                        ),
+                      })
+                    }
+                  >
                     <td>
                       <input type="checkbox" />
                     </td>
@@ -82,8 +96,11 @@ const IssueContent = ({ issueData }) => {
   );
 };
 
-IssueContent.propTypes = {
+IssueContents.propTypes = {
   issueData: PropTypes.array,
+  showModal: PropTypes.func,
+  hideModal: PropTypes.func,
+  editIssue: PropTypes.func,
 };
 
-export default IssueContent;
+export default IssueContents;

@@ -58,10 +58,16 @@ const NewIssue = ({ hideModal, addIssue }) => {
   const [issueDescription, setIssueDescription] = useState("");
   const [errors, setErrors] = useState({ title: "", description: "" });
 
-  const _addIssue = () => {
+  const onSubmit = () => {
     // バリデーションは種類ごとに関数で切り分けて、拡張性を重視してみる(1種類しかないけど)
-    const titleError = validateRequired(issueTitle, "タイトルを入力してください");
-    const descriptionError = validateRequired(issueDescription, "説明を入力してください");
+    const titleError = validateRequired(
+      issueTitle,
+      "タイトルを入力してください"
+    );
+    const descriptionError = validateRequired(
+      issueDescription,
+      "説明を入力してください"
+    );
 
     // エラーがあった場合は早期リターンでdispatchさせない
     if (titleError || descriptionError) {
@@ -115,7 +121,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
           shadow="primaryShadow"
           hoverShadow="hoverPrimaryShadow"
           label="作成"
-          onClick={_addIssue}
+          onClick={onSubmit}
         />
         <CloseButton onClick={hideModal}>閉じる</CloseButton>
       </Footer>

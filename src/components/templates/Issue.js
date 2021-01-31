@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const Issue = ({ issueData, addIssue, showModal, hideModal }) => {
+const Issue = ({ issueData, addIssue, editIssue, showModal, hideModal }) => {
   // STOREからissueDataを受け取る
   const [searchWord, setSearchWord] = useState("");
 
@@ -27,7 +27,12 @@ const Issue = ({ issueData, addIssue, showModal, hideModal }) => {
           onChange={setSearchWord}
           hideModal={hideModal}
         />
-        <IssueContents issueData={filterdIssueData} />
+        <IssueContents
+          issueData={filterdIssueData}
+          showModal={showModal}
+          hideModal={hideModal}
+          editIssue={editIssue}
+        />
       </Wrapper>
     </>
   );
@@ -36,6 +41,7 @@ const Issue = ({ issueData, addIssue, showModal, hideModal }) => {
 Issue.propTypes = {
   issueData: PropTypes.array,
   addIssue: PropTypes.func,
+  editIssue: PropTypes.func,
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
 };
