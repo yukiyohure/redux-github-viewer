@@ -2,7 +2,7 @@ import { ADD_ISSUE, EDIT_ISSUE } from "../actions";
 
 const mockData = [
   {
-    id: "1",
+    id: 1,
     title: "A bug in Top Page",
     explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
@@ -11,7 +11,7 @@ const mockData = [
     updatedAt: "01-01-2021",
   },
   {
-    id: "2",
+    id: 2,
     title: "A problem of performance in Top Page",
     explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
@@ -20,7 +20,7 @@ const mockData = [
     updatedAt: "01-01-2021",
   },
   {
-    id: "3",
+    id: 3,
     title: "fix layout",
     explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
@@ -45,10 +45,11 @@ const issueReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_ISSUE:
-      newData[newIndex] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
+      // 配列の要素はindex数より1少ないので周りくどいけど -1 しておく(indexに指定してもいいけどニュアンスが一致しないからやめておく)
+      newData[newData.length] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return { index: newIndex, data: newData };
     case EDIT_ISSUE:
-      newData[action.payload.id - 1] = action.payload;
+      newData[action.payload.id - 1] = {...action.payload};
       return { ...state, data: [...newData] };
     case "REMOVE_ISSUE":
       return;
