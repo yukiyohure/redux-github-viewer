@@ -1,4 +1,10 @@
-import { addIssue, editIssue, hideModal, showModal } from "../actions";
+import {
+  addIssue,
+  editIssue,
+  deleteIssue,
+  hideModal,
+  showModal,
+} from "../actions";
 import { connect } from "react-redux";
 import Issue from "../components/templates/Issue";
 
@@ -20,6 +26,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     editIssue: (payload) => {
       dispatch(editIssue(payload));
+    },
+    deleteIssue: (payload) => {
+      dispatch(deleteIssue(payload));
     },
     showModal: (component) => {
       dispatch(showModal(component));

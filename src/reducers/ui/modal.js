@@ -1,4 +1,4 @@
-import { CHANGE_CHILD, HIDE_MODAL, SHOW_MODAL } from "../../actions";
+import { HIDE_MODAL, SHOW_MODAL } from "../../actions";
 
 const initialState = {
   isOpen: false,
@@ -18,11 +18,6 @@ const modalReducer = (state = initialState, action) => {
         ...state,
         isOpen: false,
         component: {},
-      };
-    case CHANGE_CHILD:
-      return {
-        ...state,
-        component: action.payload,
       };
     default:
       return state;

@@ -38,7 +38,24 @@ const TableRow = styled.tr`
   }
 `;
 
-const IssueContents = ({ issueData, showModal, hideModal, editIssue }) => {
+const IssueContents = ({
+  issueData,
+  showModal,
+  hideModal,
+  editIssue,
+  checkedIssueIdList,
+  setCheckedIssueIdList,
+}) => {
+  const onChangeCheckbox = (e, id) => {
+    e.stopPropagation(); // stopPropagationしてるのにイベントが伝達してしまう...
+    if (checkedIssueIdList.includes(id)) {
+      // checkされていた場合
+      checkedIssueIdList.filter((item) => item != id);
+    } else {
+      // checkされていなかった場合
+      setCheckedIssueIdList([...checkedIssueIdList, id]);
+    }
+  };
   return (
     <>
       <Wrapper>
@@ -74,7 +91,11 @@ const IssueContents = ({ issueData, showModal, hideModal, editIssue }) => {
                     }
                   >
                     <td>
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onChange={(e) => onChangeCheckbox(e, row.id)}
+                        checked={checkedIssueIdList.includes(row.id)}
+                      />
                     </td>
                     <td>{row.title}</td>
                     <td>{row.status}</td>
@@ -101,6 +122,8 @@ IssueContents.propTypes = {
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
   editIssue: PropTypes.func,
+  checkedIssueIdList: PropTypes.array,
+  setCheckedIssueIdList: PropTypes.func,
 };
 
 export default IssueContents;

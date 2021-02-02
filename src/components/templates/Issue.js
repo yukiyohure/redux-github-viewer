@@ -9,9 +9,18 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-const Issue = ({ issueData, addIssue, editIssue, showModal, hideModal }) => {
-  // STOREからissueDataを受け取る
+const Issue = ({
+  issueData,
+  addIssue,
+  editIssue,
+  deleteIssue,
+  showModal,
+  hideModal,
+}) => {
+  // searchBarとIssueContentsのコンポーネントで扱うstateなので親であるIssueで管理してあげる
   const [searchWord, setSearchWord] = useState("");
+  // このcheckBoxの状態も、searchBarのdeleteボタンとIssueContentのcheckBoxの2つの子コンポーネントで使用するのでここで管理
+  const [checkedIssueIdList, setCheckedIssueIdList] = useState([]);
 
   const filterdIssueData = issueData.filter((item) => {
     return item.title.includes(searchWord);
@@ -23,15 +32,19 @@ const Issue = ({ issueData, addIssue, editIssue, showModal, hideModal }) => {
         <SearchBar
           showModal={showModal}
           addIssue={addIssue}
+          deleteIssue={deleteIssue}
           searchWord={searchWord}
           onChange={setSearchWord}
           hideModal={hideModal}
+          checkedIssueIdList={checkedIssueIdList}
         />
         <IssueContents
           issueData={filterdIssueData}
           showModal={showModal}
           hideModal={hideModal}
           editIssue={editIssue}
+          checkedIssueIdList={checkedIssueIdList}
+          setCheckedIssueIdList={setCheckedIssueIdList}
         />
       </Wrapper>
     </>
@@ -42,6 +55,7 @@ Issue.propTypes = {
   issueData: PropTypes.array,
   addIssue: PropTypes.func,
   editIssue: PropTypes.func,
+  deleteIssue: PropTypes.func,
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
 };

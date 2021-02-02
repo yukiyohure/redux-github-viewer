@@ -21,11 +21,18 @@ const ActionButtons = styled.div`
 
 const SearchBar = ({
   addIssue,
+  deleteIssue,
   searchWord,
   onChange,
   showModal,
   hideModal,
+  checkedIssueIdList,
 }) => {
+  const onClickDelete = () => {
+    checkedIssueIdList.forEach(id => {
+      deleteIssue(id);
+    });
+  };
   return (
     <>
       <Wrapper>
@@ -54,6 +61,7 @@ const SearchBar = ({
             label="New"
           />
           <Button
+            onClick={onClickDelete}
             hoverBackground="hoverDanger"
             background="danger"
             textColor="white"
@@ -73,6 +81,8 @@ SearchBar.propTypes = {
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
   addIssue: PropTypes.func,
+  deleteIssue: PropTypes.func,
+  checkedIssueIdList: PropTypes.array,
 };
 
 export default SearchBar;

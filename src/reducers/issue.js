@@ -1,4 +1,4 @@
-import { ADD_ISSUE, EDIT_ISSUE } from "../actions";
+import { ADD_ISSUE, EDIT_ISSUE, DELETE_ISSUE } from "../actions";
 
 const mockData = [
   {
@@ -49,10 +49,12 @@ const issueReducer = (state = initialState, action) => {
       newData[newData.length] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return { index: newIndex, data: newData };
     case EDIT_ISSUE:
-      newData[action.payload.id - 1] = {...action.payload};
+      newData[action.payload.id - 1] = { ...action.payload };
       return { ...state, data: [...newData] };
-    case "REMOVE_ISSUE":
-      return;
+    case DELETE_ISSUE:
+      console.log(action.payload);
+      delete newData[action.payload];
+      return {...state, data:newData};
     default:
       return state;
   }
