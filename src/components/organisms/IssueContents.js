@@ -47,10 +47,10 @@ const IssueContents = ({
   setCheckedIssueIdList,
 }) => {
   const onChangeCheckbox = (e, id) => {
-    e.stopPropagation(); // stopPropagationしてるのにイベントが伝達してしまう...
+    e.stopPropagation();
     if (checkedIssueIdList.includes(id)) {
       // checkされていた場合
-      checkedIssueIdList.filter((item) => item != id);
+      setCheckedIssueIdList(checkedIssueIdList.filter((item) => item != id));
     } else {
       // checkされていなかった場合
       setCheckedIssueIdList([...checkedIssueIdList, id]);
@@ -93,8 +93,9 @@ const IssueContents = ({
                     <td>
                       <input
                         type="checkbox"
-                        onChange={(e) => onChangeCheckbox(e, row.id)}
+                        onClick={(e) => onChangeCheckbox(e, row.id)}
                         checked={checkedIssueIdList.includes(row.id)}
+                        readOnly
                       />
                     </td>
                     <td>{row.title}</td>

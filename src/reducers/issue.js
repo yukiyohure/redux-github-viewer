@@ -52,9 +52,10 @@ const issueReducer = (state = initialState, action) => {
       newData[action.payload.id - 1] = { ...action.payload };
       return { ...state, data: [...newData] };
     case DELETE_ISSUE:
-      console.log(action.payload);
-      delete newData[action.payload];
-      return {...state, data:newData};
+      return {
+        ...state,
+        data: newData.filter((item) => item.id !== action.payload.id),
+      };
     default:
       return state;
   }

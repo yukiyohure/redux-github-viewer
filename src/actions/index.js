@@ -21,10 +21,10 @@ export const editIssue = (newData) => {
   };
 };
 
-export const deleteIssue = (idList) => {
+export const deleteIssue = (id) => {
   return {
     type: DELETE_ISSUE,
-    payload: idList,
+    payload: {id},
   };
 };
 
