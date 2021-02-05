@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../atoms/Button";
 import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
+import ErrorMessage from '../atoms/ErrorMessage';
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -16,7 +17,7 @@ const InputSection = styled.div`
 
 const MessageContainer = styled.section`
   padding: 1rem;
-  min-height: 119px; /* エラー文が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておこう。*/
+  min-height: 119px; /* エラー文が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておく。*/
 `;
 
 const FieldLabel = styled.label`
@@ -47,22 +48,35 @@ const Footer = styled.div`
   }
 `;
 
+const validateRequired = (value, errorMessage) => {
+  return value === '' ? errorMessage : '';
+}
+
 const EditIssue = ({ issue, hideModal, editIssue }) => {
-  const [statusState, setStatusState] = useState(issue.status);
-  const [titleState, setTitleState] = useState(issue.title);
-  const [explanationState, setExplanationState] = useState(issue.explanation);
+  const [issueState, setIssueState] = useState(issue.status);
+  const [issueTitle, setIssueTitle] = useState(issue.title);
+  const [issueDescription, setIssueDescription] = useState(issue.explanation);
+  const [errors, setErrors] = useState({ title: "", description: "" });
 
   const onChangeStatus = (e) => {
-    setStatusState(e.target.value);
+    setIssueState(e.target.value);
   };
 
   const onSubmit = () => {
+    const titleError = validateRequired(issueTitle, 'タイトルを入力してください');
+    const descriptionError = validateRequired(issueDescription, '説明を入力してください');
+
+    if (titleError || descriptionError) {
+      setErrors({ title: titleError, description: descriptionError});
+      return;
+    }
+
     const date = new Date();
     const payload = {
       ...issue,
-      title: titleState,
-      status: statusState,
-      explanation: explanationState,
+      title: issueTitle,
+      status: issueState,
+      explanation: issueDescription,
       updatedAt: date,
     };
     editIssue(payload);
@@ -77,26 +91,31 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
           <FieldLabel>タイトル</FieldLabel>
           <TextInput
             placeholder="タイトルを入力してください"
-            value={titleState}
-            onChange={setTitleState}
+            value={issueTitle}
+            onChange={setIssueTitle}
           />
         </Field>
         <Field>
           <FieldLabel>説明</FieldLabel>
           <TextArea
             placeholder="説明を入力してください"
-            value={explanationState}
-            onChange={setExplanationState}
+            value={issueDescription}
+            onChange={setIssueDescription}
           />
         </Field>
         <Field>
-          <select value={statusState} onChange={onChangeStatus}>
+          <select value={issueState} onChange={onChangeStatus}>
             <option value="open">Open</option>
             <option value="close">Close</option>
           </select>
         </Field>
       </InputSection>
-      <MessageContainer></MessageContainer>
+      <MessageContainer>
+        {errors.title && <ErrorMessage message={errors.title}></ErrorMessage>}
+        {errors.description && (
+          <ErrorMessage message={errors.description}></ErrorMessage>
+        )}
+      </MessageContainer>
       <Footer>
         <Button
           hoverBackground="hoverPrimary"

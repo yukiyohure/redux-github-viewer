@@ -49,7 +49,11 @@ const issueReducer = (state = initialState, action) => {
       newData[newData.length] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return { index: newIndex, data: newData };
     case EDIT_ISSUE:
-      newData[action.payload.id - 1] = { ...action.payload };
+      newData[
+        newData.findIndex((item) => {
+          return item.id == action.payload.id;
+        })
+      ] = { ...action.payload };
       return { ...state, data: [...newData] };
     case DELETE_ISSUE:
       return {

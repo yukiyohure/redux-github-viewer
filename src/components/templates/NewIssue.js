@@ -56,6 +56,7 @@ const validateRequired = (value, errorMessage) => {
 const NewIssue = ({ hideModal, addIssue }) => {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
+  // 表示するためのエラーメッセージオブジェクト。keyにあるだけの文が潜在的なエラー分の全て。
   const [errors, setErrors] = useState({ title: "", description: "" });
 
   const onSubmit = () => {
