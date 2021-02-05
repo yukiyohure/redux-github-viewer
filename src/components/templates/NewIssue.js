@@ -79,7 +79,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
     const date = new Date();
     const payload = {
       title: issueTitle,
-      explanation: issueDescription,
+      description: issueDescription,
       status: "Open",
       author: "",
       createdAt: date,

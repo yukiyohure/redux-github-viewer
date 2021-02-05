@@ -4,7 +4,7 @@ const mockData = [
   {
     id: 1,
     title: "A bug in Top Page",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
     author: "",
     createdAt: "01-01-2021",
@@ -13,7 +13,7 @@ const mockData = [
   {
     id: 2,
     title: "A problem of performance in Top Page",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
     author: "",
     createdAt: "01-01-2021",
@@ -22,7 +22,7 @@ const mockData = [
   {
     id: 3,
     title: "fix layout",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
     author: "",
     createdAt: "01-01-2021",
@@ -49,6 +49,7 @@ const issueReducer = (state = initialState, action) => {
       newData[newData.length] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return { index: newIndex, data: newData };
     case EDIT_ISSUE:
+      // 配列でissueのデータを持っているので、
       newData[
         newData.findIndex((item) => {
           return item.id == action.payload.id;

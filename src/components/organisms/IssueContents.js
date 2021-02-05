@@ -46,7 +46,7 @@ const IssueContents = ({
   checkedIssueIdList,
   setCheckedIssueIdList,
 }) => {
-  const onChangeCheckbox = (e, id) => {
+  const onClickCheckbox = (e, id) => {
     e.stopPropagation();
     if (checkedIssueIdList.includes(id)) {
       // checkされていた場合
@@ -93,7 +93,7 @@ const IssueContents = ({
                     <td>
                       <input
                         type="checkbox"
-                        onClick={(e) => onChangeCheckbox(e, row.id)}
+                        onClick={(e) => onClickCheckbox(e, row.id)}
                         checked={checkedIssueIdList.includes(row.id)}
                         readOnly
                       />

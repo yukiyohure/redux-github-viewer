@@ -55,7 +55,7 @@ const validateRequired = (value, errorMessage) => {
 const EditIssue = ({ issue, hideModal, editIssue }) => {
   const [issueState, setIssueState] = useState(issue.status);
   const [issueTitle, setIssueTitle] = useState(issue.title);
-  const [issueDescription, setIssueDescription] = useState(issue.explanation);
+  const [issueDescription, setIssueDescription] = useState(issue.description);
   const [errors, setErrors] = useState({ title: "", description: "" });
 
   const onChangeStatus = (e) => {
@@ -76,7 +76,7 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
       ...issue,
       title: issueTitle,
       status: issueState,
-      explanation: issueDescription,
+      description: issueDescription,
       updatedAt: date,
     };
     editIssue(payload);
