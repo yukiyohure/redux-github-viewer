@@ -29,49 +29,47 @@ const SearchBar = ({
   checkedIssueIdList,
 }) => {
   const onClickDelete = () => {
-    checkedIssueIdList.forEach(id => {
+    checkedIssueIdList.forEach((id) => {
       deleteIssue(id);
     });
   };
   return (
-    <>
-      <Wrapper>
-        <h2>Issue</h2>
-        <SearchForm>
-          <TextInput
-            placeholder="issue名で検索"
-            value={searchWord}
-            onChange={onChange}
-          />
-        </SearchForm>
-        <ActionButtons>
-          <Button
-            onClick={() =>
-              showModal({
-                component: (
-                  <NewIssue addIssue={addIssue} hideModal={() => hideModal()} />
-                ),
-              })
-            }
-            hoverBackground="hoverPrimary"
-            background="primary"
-            textColor="white"
-            shadow="primaryShadow"
-            hoverShadow="hoverPrimaryShadow"
-            label="New"
-          />
-          <Button
-            onClick={onClickDelete}
-            hoverBackground="hoverDanger"
-            background="danger"
-            textColor="white"
-            shadow="dangerShadow"
-            hoverShadow="hoverDangerShadow"
-            label="Delete"
-          />
-        </ActionButtons>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <h2>Issue</h2>
+      <SearchForm>
+        <TextInput
+          placeholder="issue名で検索"
+          value={searchWord}
+          onChange={onChange}
+        />
+      </SearchForm>
+      <ActionButtons>
+        <Button
+          onClick={() =>
+            showModal({
+              component: (
+                <NewIssue addIssue={addIssue} hideModal={() => hideModal()} />
+              ),
+            })
+          }
+          hoverBackground="hoverPrimary"
+          background="primary"
+          textColor="white"
+          shadow="primaryShadow"
+          hoverShadow="hoverPrimaryShadow"
+          label="New"
+        />
+        <Button
+          onClick={onClickDelete}
+          hoverBackground="hoverDanger"
+          background="danger"
+          textColor="white"
+          shadow="dangerShadow"
+          hoverShadow="hoverDangerShadow"
+          label="Delete"
+        />
+      </ActionButtons>
+    </Wrapper>
   );
 };
 

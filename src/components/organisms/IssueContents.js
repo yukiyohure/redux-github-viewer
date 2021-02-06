@@ -57,7 +57,6 @@ const IssueContents = ({
     }
   };
   return (
-    <>
       <Wrapper>
         <IssueTable>
           <thead>
@@ -114,7 +113,6 @@ const IssueContents = ({
           </tbody>
         </IssueTable>
       </Wrapper>
-    </>
   );
 };
 

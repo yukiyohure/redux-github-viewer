@@ -42,27 +42,25 @@ const links = [
 
 const Header = () => {
   return (
-    <>
-      <HeaderContainer>
-        <div>
-          <Title>
-            <Link to="/">Github Viewer</Link>
-          </Title>
-        </div>
-        <HeaderLinkList>
-          {links.map((link) => {
-            return (
-              <li key={link.key}>
-                {" "}
-                {/* Reactが効率よくリストの差分抽出できるように一意のkeyを渡してあげる */}
-                <Link to={link.to}>{link.linkText}</Link>
-              </li>
-            );
-          })}
-        </HeaderLinkList>
-        <DropdownMenu />
-      </HeaderContainer>
-    </>
+    <HeaderContainer>
+      <div>
+        <Title>
+          <Link to="/">Github Viewer</Link>
+        </Title>
+      </div>
+      <HeaderLinkList>
+        {links.map((link) => {
+          return (
+            <li key={link.key}>
+              {" "}
+              {/* Reactが効率よくリストの差分抽出できるように一意のkeyを渡してあげる */}
+              <Link to={link.to}>{link.linkText}</Link>
+            </li>
+          );
+        })}
+      </HeaderLinkList>
+      <DropdownMenu />
+    </HeaderContainer>
   );
 };
 

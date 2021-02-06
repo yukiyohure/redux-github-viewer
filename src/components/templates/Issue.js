@@ -27,27 +27,25 @@ const Issue = ({
   });
 
   return (
-    <>
-      <Wrapper>
-        <SearchBar
-          showModal={showModal}
-          addIssue={addIssue}
-          deleteIssue={deleteIssue}
-          searchWord={searchWord}
-          onChange={setSearchWord}
-          hideModal={hideModal}
-          checkedIssueIdList={checkedIssueIdList}
-        />
-        <IssueContents
-          issueData={filterdIssueData}
-          showModal={showModal}
-          hideModal={hideModal}
-          editIssue={editIssue}
-          checkedIssueIdList={checkedIssueIdList}
-          setCheckedIssueIdList={setCheckedIssueIdList}
-        />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <SearchBar
+        showModal={showModal}
+        addIssue={addIssue}
+        deleteIssue={deleteIssue}
+        searchWord={searchWord}
+        onChange={setSearchWord}
+        hideModal={hideModal}
+        checkedIssueIdList={checkedIssueIdList}
+      />
+      <IssueContents
+        issueData={filterdIssueData}
+        showModal={showModal}
+        hideModal={hideModal}
+        editIssue={editIssue}
+        checkedIssueIdList={checkedIssueIdList}
+        setCheckedIssueIdList={setCheckedIssueIdList}
+      />
+    </Wrapper>
   );
 };
 
