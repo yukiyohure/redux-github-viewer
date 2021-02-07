@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import Button from "../atoms/Button";
 import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
-import Button from "../atoms/Button";
-import PropTypes from "prop-types";
-import ErrorMessage from "../atoms/ErrorMessage";
+import ErrorMessage from '../atoms/ErrorMessage';
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -17,7 +17,7 @@ const InputSection = styled.div`
 
 const MessageContainer = styled.section`
   padding: 1rem;
-  min-height: 119px; /* エラー文が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておこう。*/
+  min-height: 119px; /* エラー文が出てきてもボタンがしたに追いやられないよう、事前にスペースを開けておく。*/
 `;
 
 const FieldLabel = styled.label`
@@ -48,45 +48,39 @@ const Footer = styled.div`
   }
 `;
 
-// 入力チェックバリデーション
 const validateRequired = (value, errorMessage) => {
-  return value === "" ? errorMessage : "";
-};
+  return value === '' ? errorMessage : '';
+}
 
-const NewIssue = ({ hideModal, addIssue }) => {
-  const [issueTitle, setIssueTitle] = useState("");
-  const [issueDescription, setIssueDescription] = useState("");
-  // 表示するためのエラーメッセージオブジェクト。keyにあるだけの文が潜在的なエラー分の全て。
+const EditIssue = ({ issue, hideModal, editIssue }) => {
+  const [issueState, setIssueState] = useState(issue.status);
+  const [issueTitle, setIssueTitle] = useState(issue.title);
+  const [issueDescription, setIssueDescription] = useState(issue.description);
   const [errors, setErrors] = useState({ title: "", description: "" });
 
-  const onSubmit = () => {
-    // バリデーションは種類ごとに関数で切り分けて、拡張性を重視してみる(1種類しかないけど)
-    const titleError = validateRequired(
-      issueTitle,
-      "タイトルを入力してください"
-    );
-    const descriptionError = validateRequired(
-      issueDescription,
-      "説明を入力してください"
-    );
+  const onChangeStatus = (e) => {
+    setIssueState(e.target.value);
+  };
 
-    // エラーがあった場合は早期リターンでdispatchさせない
+  const onSubmit = () => {
+    const titleError = validateRequired(issueTitle, 'タイトルを入力してください');
+    const descriptionError = validateRequired(issueDescription, '説明を入力してください');
+
     if (titleError || descriptionError) {
-      setErrors({ title: titleError, description: descriptionError });
+      setErrors({ title: titleError, description: descriptionError});
       return;
     }
 
     const date = new Date();
     const payload = {
+      ...issue,
       title: issueTitle,
+      status: issueState,
       description: issueDescription,
-      status: "Open",
-      author: "",
-      createdAt: date,
       updatedAt: date,
     };
-    addIssue(payload);
-    hideModal(); // issueの追加処理が終わったらモーダルを閉じる
+    editIssue(payload);
+    hideModal();
   };
 
   return (
@@ -97,6 +91,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
           <FieldLabel>タイトル</FieldLabel>
           <TextInput
             placeholder="タイトルを入力してください"
+            value={issueTitle}
             onChange={setIssueTitle}
           />
         </Field>
@@ -104,8 +99,15 @@ const NewIssue = ({ hideModal, addIssue }) => {
           <FieldLabel>説明</FieldLabel>
           <TextArea
             placeholder="説明を入力してください"
+            value={issueDescription}
             onChange={setIssueDescription}
           />
+        </Field>
+        <Field>
+          <select value={issueState} onChange={onChangeStatus}>
+            <option value="open">Open</option>
+            <option value="close">Close</option>
+          </select>
         </Field>
       </InputSection>
       <MessageContainer>
@@ -130,9 +132,10 @@ const NewIssue = ({ hideModal, addIssue }) => {
   );
 };
 
-NewIssue.propTypes = {
+EditIssue.propTypes = {
+  issue: PropTypes.object,
   hideModal: PropTypes.func,
-  addIssue: PropTypes.func,
+  editIssue: PropTypes.func,
 };
 
-export default NewIssue;
+export default EditIssue;

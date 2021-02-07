@@ -1,26 +1,28 @@
+import { ADD_ISSUE, EDIT_ISSUE, DELETE_ISSUE } from "../actions";
+
 const mockData = [
   {
-    id: "1",
+    id: 1,
     title: "A bug in Top Page",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
     author: "",
     createdAt: "01-01-2021",
     updatedAt: "01-01-2021",
   },
   {
-    id: "2",
+    id: 2,
     title: "A problem of performance in Top Page",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
     author: "",
     createdAt: "01-01-2021",
     updatedAt: "01-01-2021",
   },
   {
-    id: "3",
+    id: 3,
     title: "fix layout",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     status: "Open",
     author: "",
     createdAt: "01-01-2021",
@@ -42,13 +44,23 @@ const issueReducer = (state = initialState, action) => {
   const newData = [...data]; // 新しいデータのための「枠」を作成(今までのデータを引き継ぐ)
 
   switch (action.type) {
-    case "ADD_ISSUE":
-      newData[newIndex] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
+    case ADD_ISSUE:
+      // 配列の要素はindex数より1少ないので周りくどいけど -1 しておく(indexに指定してもいいけどニュアンスが一致しないからやめておく)
+      newData[newData.length] = { ...action.payload, id: newIndex }; // payloadにはidは設定されていない想定なのでここでidを指定してあげる。
       return { index: newIndex, data: newData };
-    case "UPDATE_ISSUE":
-      return;
-    case "REMOVE_ISSUE":
-      return;
+    case EDIT_ISSUE:
+      // 配列でissueのデータを持っているので、
+      newData[
+        newData.findIndex((item) => {
+          return item.id == action.payload.id;
+        })
+      ] = { ...action.payload };
+      return { ...state, data: [...newData] };
+    case DELETE_ISSUE:
+      return {
+        ...state,
+        data: newData.filter((item) => item.id !== action.payload.id),
+      };
     default:
       return state;
   }

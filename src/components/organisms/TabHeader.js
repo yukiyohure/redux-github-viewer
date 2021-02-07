@@ -26,18 +26,16 @@ const Tab = styled.li`
 
 const TabHeader = ({ selectedTab, tabs, onClick }) => {
   return (
-    <>
-      <TabList>
-        {tabs.map(({ key, label }) => {
-          const isActive = key === selectedTab;
-          return (
-            <Tab isActive={isActive} key={key} onClick={() => onClick(key)}>
-              {label}
-            </Tab>
-          );
-        })}
-      </TabList>
-    </>
+    <TabList>
+      {tabs.map(({ key, label }) => {
+        const isActive = key === selectedTab;
+        return (
+          <Tab isActive={isActive} key={key} onClick={() => onClick(key)}>
+            {label}
+          </Tab>
+        );
+      })}
+    </TabList>
   );
 };
 

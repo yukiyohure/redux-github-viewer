@@ -21,49 +21,60 @@ const ActionButtons = styled.div`
 
 const SearchBar = ({
   addIssue,
+  deleteIssue,
   searchWord,
   onChange,
   showModal,
   hideModal,
+  checkedIssueIdList,
+  setIsCheckedAllCheckbox,
 }) => {
+  const onClickDelete = () => {
+    if (checkedIssueIdList.length) {
+      checkedIssueIdList.forEach((id) => {
+        deleteIssue(id);
+      });
+      // issueを削除した後は自動的に全件チェックボックスのチェックを外す
+      setIsCheckedAllCheckbox(false);
+    }
+  };
   return (
-    <>
-      <Wrapper>
-        <h2>Issue</h2>
-        <SearchForm>
-          <TextInput
-            placeholder="issue名で検索"
-            value={searchWord}
-            onChange={onChange}
-          />
-        </SearchForm>
-        <ActionButtons>
-          <Button
-            onClick={() =>
-              showModal({
-                component: (
-                  <NewIssue addIssue={addIssue} hideModal={() => hideModal()} />
-                ),
-              })
-            }
-            hoverBackground="hoverPrimary"
-            background="primary"
-            textColor="white"
-            shadow="primaryShadow"
-            hoverShadow="hoverPrimaryShadow"
-            label="New"
-          />
-          <Button
-            hoverBackground="hoverDanger"
-            background="danger"
-            textColor="white"
-            shadow="dangerShadow"
-            hoverShadow="hoverDangerShadow"
-            label="Delete"
-          />
-        </ActionButtons>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <h2>Issue</h2>
+      <SearchForm>
+        <TextInput
+          placeholder="issue名で検索"
+          value={searchWord}
+          onChange={onChange}
+        />
+      </SearchForm>
+      <ActionButtons>
+        <Button
+          onClick={() =>
+            showModal({
+              component: (
+                <NewIssue addIssue={addIssue} hideModal={() => hideModal()} />
+              ),
+            })
+          }
+          hoverBackground="hoverPrimary"
+          background="primary"
+          textColor="white"
+          shadow="primaryShadow"
+          hoverShadow="hoverPrimaryShadow"
+          label="New"
+        />
+        <Button
+          onClick={onClickDelete}
+          hoverBackground="hoverDanger"
+          background="danger"
+          textColor="white"
+          shadow="dangerShadow"
+          hoverShadow="hoverDangerShadow"
+          label="Delete"
+        />
+      </ActionButtons>
+    </Wrapper>
   );
 };
 
@@ -73,6 +84,9 @@ SearchBar.propTypes = {
   showModal: PropTypes.func,
   hideModal: PropTypes.func,
   addIssue: PropTypes.func,
+  deleteIssue: PropTypes.func,
+  checkedIssueIdList: PropTypes.array,
+  setIsCheckedAllCheckbox: PropTypes.func,
 };
 
 export default SearchBar;
