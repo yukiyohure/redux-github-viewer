@@ -59,6 +59,11 @@ const NewIssue = ({ hideModal, addIssue, profile }) => {
   // 表示するためのエラーメッセージオブジェクト。keyにあるだけの文が潜在的なエラー分の全て。
   const [errors, setErrors] = useState({ title: "", description: "" });
 
+  const dateObject = new Date();
+  const year = dateObject.getFullYear();
+  const month = ("00" + (dateObject.getMonth() + 1)).slice(-2);
+  const day = ("00" + dateObject.getDate()).slice(-2);
+
   const onSubmit = () => {
     // バリデーションは種類ごとに関数で切り分けて、拡張性を重視してみる(1種類しかないけど)
     const titleError = validateRequired(
@@ -76,14 +81,13 @@ const NewIssue = ({ hideModal, addIssue, profile }) => {
       return;
     }
 
-    const date = new Date();
     const payload = {
       title: issueTitle,
       description: issueDescription,
       status: "Open",
       author: profile.userName,
-      createdAt: date,
-      updatedAt: date,
+      createdAt: `${month}-${day}-${year}`,
+      updatedAt: `${month}-${day}-${year}`,
     };
     addIssue(payload);
     hideModal(); // issueの追加処理が終わったらモーダルを閉じる

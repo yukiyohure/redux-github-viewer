@@ -119,8 +119,8 @@ const IssueContents = ({
                   <td>{row.title}</td>
                   <td>{row.status}</td>
                   <td>{row.author}</td>
-                  <td>01-01-2021</td>
-                  <td>01-01-2021</td>
+                  <td>{row.createdAt}</td>
+                  <td>{row.updatedAt}</td>
                 </TableRow>
               );
             })
