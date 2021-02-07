@@ -105,8 +105,8 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
         </Field>
         <Field>
           <select value={issueState} onChange={onChangeStatus}>
-            <option value="open">Open</option>
-            <option value="close">Close</option>
+            <option value="Open">Open</option>
+            <option value="Close">Close</option>
           </select>
         </Field>
       </InputSection>
