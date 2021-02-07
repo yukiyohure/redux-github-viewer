@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { colors } from "../../variables";
 import { Link } from "react-router-dom";
@@ -32,9 +32,9 @@ const MenuItem = styled.li`
   }
 `;
 
-const Menu = ({ onClick }) => {
+const Menu = forwardRef(({ onClick }, ref) => {
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <ul>
         {MenuLinks.map(({ key, label, to }) => {
           return (
@@ -47,8 +47,10 @@ const Menu = ({ onClick }) => {
         })}
       </ul>
     </Wrapper>
-  );
-};
+  )
+});
+
+Menu.displayName = 'Menu';
 
 Menu.propTypes = {
   onClick: PropTypes.func,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // font-awesomeを使用するためのコンポーネント
 import { faBars } from "@fortawesome/free-solid-svg-icons"; // 実際に使用するアイコンを指定するコンポーネント
@@ -18,15 +18,34 @@ const MenuIcon = styled(FontAwesomeIcon)`
 
 const DropdownMenu = () => {
   const [isShown, setShown] = useState(false);
+  const menuRef = useRef(null); // menuのdivのref hookを作成
 
-  const handleMenuClick = () => {
+  // 初回のレンダリング時のみ実行させた方が無駄に関数生成されなくてメモリ節約になるのでuseEffectを使用
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      // Menuコンポーネント以外がクリックされたらメニューを閉じる
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShown(false);
+      }
+    };
+    // MenuIcon以外での画面全体のどこかがクリックされるたびに呼ばれる
+    // (MenuではstopPropagationを使用してイベント伝播を止めているため)
+    document.addEventListener("click", handleClickOutside);
+    // アンマウント時にリスナーを削除してメモリに優しく。
+    return () => {
+      removeEventListener("click", handleClickOutside);
+    };
+  }, []); // 依存を空にすることで、初回レンダー時のみこのuseEffectは実行される
+
+  const handleMenuClick = (e) => {
+    e.stopPropagation();
     setShown(!isShown);
   };
 
   return (
     <Container>
       <MenuIcon onClick={handleMenuClick} icon={faBars} />
-      {isShown && <Menu onClick={handleMenuClick} />}
+      {isShown && <Menu ref={menuRef} onClick={handleMenuClick} />}
     </Container>
   );
 };
