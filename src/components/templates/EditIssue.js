@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../atoms/Button";
 import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
-import ErrorMessage from '../atoms/ErrorMessage';
+import ErrorMessage from "../atoms/ErrorMessage";
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -49,8 +49,8 @@ const Footer = styled.div`
 `;
 
 const validateRequired = (value, errorMessage) => {
-  return value === '' ? errorMessage : '';
-}
+  return value === "" ? errorMessage : "";
+};
 
 const EditIssue = ({ issue, hideModal, editIssue }) => {
   const [issueState, setIssueState] = useState(issue.status);
@@ -58,26 +58,36 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
   const [issueDescription, setIssueDescription] = useState(issue.description);
   const [errors, setErrors] = useState({ title: "", description: "" });
 
+  const dateObject = new Date();
+  var year = dateObject.getFullYear();
+  var month = ("00" + (dateObject.getMonth() + 1)).slice(-2);
+  var day = ("00" + dateObject.getDate()).slice(-2);
+
   const onChangeStatus = (e) => {
     setIssueState(e.target.value);
   };
 
   const onSubmit = () => {
-    const titleError = validateRequired(issueTitle, 'タイトルを入力してください');
-    const descriptionError = validateRequired(issueDescription, '説明を入力してください');
+    const titleError = validateRequired(
+      issueTitle,
+      "タイトルを入力してください"
+    );
+    const descriptionError = validateRequired(
+      issueDescription,
+      "説明を入力してください"
+    );
 
     if (titleError || descriptionError) {
-      setErrors({ title: titleError, description: descriptionError});
+      setErrors({ title: titleError, description: descriptionError });
       return;
     }
 
-    const date = new Date();
     const payload = {
       ...issue,
       title: issueTitle,
       status: issueState,
       description: issueDescription,
-      updatedAt: date,
+      updatedAt: `${month}-${day}-${year}`,
     };
     editIssue(payload);
     hideModal();
@@ -105,8 +115,8 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
         </Field>
         <Field>
           <select value={issueState} onChange={onChangeStatus}>
-            <option value="open">Open</option>
-            <option value="close">Close</option>
+            <option value="Open">Open</option>
+            <option value="Close">Close</option>
           </select>
         </Field>
       </InputSection>

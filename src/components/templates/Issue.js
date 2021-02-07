@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 
 const Issue = ({
   issueData,
+  profile,
   addIssue,
   editIssue,
   deleteIssue,
@@ -30,6 +31,7 @@ const Issue = ({
   return (
     <Wrapper>
       <SearchBar
+        profile={profile}
         showModal={showModal}
         addIssue={addIssue}
         deleteIssue={deleteIssue}
@@ -41,6 +43,7 @@ const Issue = ({
       />
       <IssueContents
         issueData={filterdIssueData}
+        profile={profile}
         showModal={showModal}
         hideModal={hideModal}
         editIssue={editIssue}
@@ -55,6 +58,7 @@ const Issue = ({
 
 Issue.propTypes = {
   issueData: PropTypes.array,
+  profile: PropTypes.object,
   addIssue: PropTypes.func,
   editIssue: PropTypes.func,
   deleteIssue: PropTypes.func,

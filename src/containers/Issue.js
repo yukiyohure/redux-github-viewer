@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
     // stateオブジェクトから指定できるのは、src/reducers/index.js でrootReducerにまとめたときのオブジェクトのkey名
     // key名がコンポーネントで受け取るpropsの名前になる
     issueData: state.issue.data,
+    profile: state.profile,
   };
 };
 
