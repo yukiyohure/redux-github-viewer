@@ -27,11 +27,16 @@ const SearchBar = ({
   showModal,
   hideModal,
   checkedIssueIdList,
+  setIsCheckedAllCheckbox,
 }) => {
   const onClickDelete = () => {
-    checkedIssueIdList.forEach((id) => {
-      deleteIssue(id);
-    });
+    if (checkedIssueIdList.length) {
+      checkedIssueIdList.forEach((id) => {
+        deleteIssue(id);
+      });
+      // issueを削除した後は自動的に全件チェックボックスのチェックを外す
+      setIsCheckedAllCheckbox(false);
+    }
   };
   return (
     <Wrapper>
@@ -81,6 +86,7 @@ SearchBar.propTypes = {
   addIssue: PropTypes.func,
   deleteIssue: PropTypes.func,
   checkedIssueIdList: PropTypes.array,
+  setIsCheckedAllCheckbox: PropTypes.func,
 };
 
 export default SearchBar;

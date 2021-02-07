@@ -45,7 +45,21 @@ const IssueContents = ({
   editIssue,
   checkedIssueIdList,
   setCheckedIssueIdList,
+  isCheckedAllCheckbox,
+  setIsCheckedAllCheckbox,
 }) => {
+  const allIdList = issueData.map((item) => item.id);
+
+  const onClickAllCheckbox = () => {
+    setIsCheckedAllCheckbox((prevState) => {
+      const newState = !prevState;
+      // 変更したstate(全件checkboxのstate)を参考に別の処理を行う必要があったため、useStateのsetterにcallbackを渡し,
+      // その中で処理を行うことで変更されたstateを使って同期的に処理を実行可能
+      newState ? setCheckedIssueIdList(allIdList) : setCheckedIssueIdList([]);
+      return newState;
+    });
+  };
+
   const onClickCheckbox = (e, id) => {
     e.stopPropagation();
     if (checkedIssueIdList.includes(id)) {
@@ -57,62 +71,67 @@ const IssueContents = ({
     }
   };
   return (
-      <Wrapper>
-        <IssueTable>
-          <thead>
+    <Wrapper>
+      <IssueTable>
+        <thead>
+          <TableRow>
+            <th>
+              <input
+                type="checkbox"
+                checked={isCheckedAllCheckbox}
+                onClick={onClickAllCheckbox}
+                readOnly
+              />
+            </th>
+            <th></th>
+            <th>ステータス</th>
+            <th>作成者</th>
+            <th>作成日付</th>
+            <th>更新日付</th>
+          </TableRow>
+        </thead>
+        <tbody>
+          {issueData.length ? (
+            issueData.map((row) => {
+              return (
+                <TableRow
+                  key={row.id}
+                  onClick={() =>
+                    showModal({
+                      component: (
+                        <EditIssue
+                          issue={row}
+                          hideModal={hideModal}
+                          editIssue={editIssue}
+                        />
+                      ),
+                    })
+                  }
+                >
+                  <td>
+                    <input
+                      type="checkbox"
+                      onClick={(e) => onClickCheckbox(e, row.id)}
+                      checked={checkedIssueIdList.includes(row.id)}
+                      readOnly
+                    />
+                  </td>
+                  <td>{row.title}</td>
+                  <td>{row.status}</td>
+                  <td>{row.author}</td>
+                  <td>01-01-2021</td>
+                  <td>01-01-2021</td>
+                </TableRow>
+              );
+            })
+          ) : (
             <TableRow>
-              <th>
-                <input type="checkbox" />
-              </th>
-              <th></th>
-              <th>ステータス</th>
-              <th>作成者</th>
-              <th>作成日付</th>
-              <th>更新日付</th>
+              <td>データがありません</td>
             </TableRow>
-          </thead>
-          <tbody>
-            {issueData.length ? (
-              issueData.map((row) => {
-                return (
-                  <TableRow
-                    key={row.id}
-                    onClick={() =>
-                      showModal({
-                        component: (
-                          <EditIssue
-                            issue={row}
-                            hideModal={hideModal}
-                            editIssue={editIssue}
-                          />
-                        ),
-                      })
-                    }
-                  >
-                    <td>
-                      <input
-                        type="checkbox"
-                        onClick={(e) => onClickCheckbox(e, row.id)}
-                        checked={checkedIssueIdList.includes(row.id)}
-                        readOnly
-                      />
-                    </td>
-                    <td>{row.title}</td>
-                    <td>{row.status}</td>
-                    <td>{row.author}</td>
-                    <td>01-01-2021</td>
-                    <td>01-01-2021</td>
-                  </TableRow>
-                );
-              })
-            ) : (
-              <TableRow>
-                <td>データがありません</td>
-              </TableRow>
-            )}
-          </tbody>
-        </IssueTable>
-      </Wrapper>
+          )}
+        </tbody>
+      </IssueTable>
+    </Wrapper>
   );
 };
 
@@ -123,6 +142,8 @@ IssueContents.propTypes = {
   editIssue: PropTypes.func,
   checkedIssueIdList: PropTypes.array,
   setCheckedIssueIdList: PropTypes.func,
+  isCheckedAllCheckbox: PropTypes.bool,
+  setIsCheckedAllCheckbox: PropTypes.func,
 };
 
 export default IssueContents;

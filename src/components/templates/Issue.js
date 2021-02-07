@@ -21,6 +21,7 @@ const Issue = ({
   const [searchWord, setSearchWord] = useState("");
   // このcheckBoxの状態も、searchBarのdeleteボタンとIssueContentのcheckBoxの2つの子コンポーネントで使用するのでここで管理
   const [checkedIssueIdList, setCheckedIssueIdList] = useState([]);
+  const [isCheckedAllCheckbox, setIsCheckedAllCheckbox] = useState(false);
 
   const filterdIssueData = issueData.filter((item) => {
     return item.title.includes(searchWord);
@@ -36,6 +37,7 @@ const Issue = ({
         onChange={setSearchWord}
         hideModal={hideModal}
         checkedIssueIdList={checkedIssueIdList}
+        setIsCheckedAllCheckbox={setIsCheckedAllCheckbox}
       />
       <IssueContents
         issueData={filterdIssueData}
@@ -44,6 +46,8 @@ const Issue = ({
         editIssue={editIssue}
         checkedIssueIdList={checkedIssueIdList}
         setCheckedIssueIdList={setCheckedIssueIdList}
+        isCheckedAllCheckbox={isCheckedAllCheckbox}
+        setIsCheckedAllCheckbox={setIsCheckedAllCheckbox}
       />
     </Wrapper>
   );
