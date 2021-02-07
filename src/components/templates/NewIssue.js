@@ -53,7 +53,7 @@ const validateRequired = (value, errorMessage) => {
   return value === "" ? errorMessage : "";
 };
 
-const NewIssue = ({ hideModal, addIssue }) => {
+const NewIssue = ({ hideModal, addIssue, profile }) => {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
   // 表示するためのエラーメッセージオブジェクト。keyにあるだけの文が潜在的なエラー分の全て。
@@ -81,7 +81,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
       title: issueTitle,
       description: issueDescription,
       status: "Open",
-      author: "",
+      author: profile.userName,
       createdAt: date,
       updatedAt: date,
     };
@@ -133,6 +133,7 @@ const NewIssue = ({ hideModal, addIssue }) => {
 NewIssue.propTypes = {
   hideModal: PropTypes.func,
   addIssue: PropTypes.func,
+  profile: PropTypes.object
 };
 
 export default NewIssue;

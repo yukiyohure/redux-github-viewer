@@ -20,6 +20,7 @@ const ActionButtons = styled.div`
 `;
 
 const SearchBar = ({
+  profile,
   addIssue,
   deleteIssue,
   searchWord,
@@ -53,7 +54,11 @@ const SearchBar = ({
           onClick={() =>
             showModal({
               component: (
-                <NewIssue addIssue={addIssue} hideModal={() => hideModal()} />
+                <NewIssue
+                  addIssue={addIssue}
+                  hideModal={() => hideModal()}
+                  profile={profile}
+                />
               ),
             })
           }
@@ -79,6 +84,7 @@ const SearchBar = ({
 };
 
 SearchBar.propTypes = {
+  profile: PropTypes.object,
   searchWord: PropTypes.string,
   onChange: PropTypes.func,
   showModal: PropTypes.func,
