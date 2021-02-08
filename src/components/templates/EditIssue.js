@@ -5,6 +5,7 @@ import Button from "../atoms/Button";
 import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
 import ErrorMessage from "../atoms/ErrorMessage";
+import { getFormatedDate, validateRequired } from "../../utils";
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -48,20 +49,13 @@ const Footer = styled.div`
   }
 `;
 
-const validateRequired = (value, errorMessage) => {
-  return value === "" ? errorMessage : "";
-};
-
 const EditIssue = ({ issue, hideModal, editIssue }) => {
   const [issueState, setIssueState] = useState(issue.status);
   const [issueTitle, setIssueTitle] = useState(issue.title);
   const [issueDescription, setIssueDescription] = useState(issue.description);
   const [errors, setErrors] = useState({ title: "", description: "" });
 
-  const dateObject = new Date();
-  const year = dateObject.getFullYear();
-  const month = ("00" + (dateObject.getMonth() + 1)).slice(-2);
-  const day = ("00" + dateObject.getDate()).slice(-2);
+  const now = getFormatedDate(new Date());
 
   const onChangeStatus = (e) => {
     setIssueState(e.target.value);
@@ -87,7 +81,7 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
       title: issueTitle,
       status: issueState,
       description: issueDescription,
-      updatedAt: `${month}-${day}-${year}`,
+      updatedAt: now,
     };
     editIssue(payload);
     hideModal();
