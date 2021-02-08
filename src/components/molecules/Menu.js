@@ -8,12 +8,26 @@ const Wrapper = styled.div`
   position: absolute;
   right: 20px;
   width: 200px;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   color: ${colors.defaultText};
   border-radius: 2px;
   margin-top: 1rem;
   background: ${colors.white};
   box-shadow: rgba(51, 51, 51, 0.15) 1px 1px 4px 1px;
+`;
+
+const MenuItem = styled.li`
+  a {
+    color: ${colors.defaultText};
+    font-size: 1rem;
+    padding: 0.5rem;
+    display: block;
+    font-weight: 500;
+    &:hover {
+      background: ${colors.menuBackground};
+      color: ${colors.white};
+    }
+  }
 `;
 
 const MenuLinks = [
@@ -22,15 +36,6 @@ const MenuLinks = [
   { key: "issue", label: "Issue", to: "/issue" },
   { key: "pullrequest", label: "Pull Request", to: "/pull-request" },
 ];
-
-const MenuItem = styled.li`
-  a {
-    color: ${colors.defaultText};
-    font-size: 1rem;
-    padding: 0.5rem;
-    display: block;
-  }
-`;
 
 const Menu = forwardRef(({ onClick }, ref) => {
   return (
