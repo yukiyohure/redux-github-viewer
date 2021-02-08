@@ -5,6 +5,7 @@ import TextArea from "../atoms/TextArea";
 import Button from "../atoms/Button";
 import PropTypes from "prop-types";
 import ErrorMessage from "../atoms/ErrorMessage";
+import { getFormatedDate, validateRequired } from "../../utils";
 
 const Wrapper = styled.div`
   max-width: 598px;
@@ -48,21 +49,13 @@ const Footer = styled.div`
   }
 `;
 
-// 入力チェックバリデーション
-const validateRequired = (value, errorMessage) => {
-  return value === "" ? errorMessage : "";
-};
-
 const NewIssue = ({ hideModal, addIssue, profile }) => {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
   // 表示するためのエラーメッセージオブジェクト。keyにあるだけの文が潜在的なエラー分の全て。
   const [errors, setErrors] = useState({ title: "", description: "" });
 
-  const dateObject = new Date();
-  const year = dateObject.getFullYear();
-  const month = ("00" + (dateObject.getMonth() + 1)).slice(-2);
-  const day = ("00" + dateObject.getDate()).slice(-2);
+  const now = getFormatedDate(new Date());
 
   const onSubmit = () => {
     // バリデーションは種類ごとに関数で切り分けて、拡張性を重視してみる(1種類しかないけど)
@@ -86,8 +79,8 @@ const NewIssue = ({ hideModal, addIssue, profile }) => {
       description: issueDescription,
       status: "Open",
       author: profile.userName,
-      createdAt: `${month}-${day}-${year}`,
-      updatedAt: `${month}-${day}-${year}`,
+      createdAt: now,
+      updatedAt: now,
     };
     addIssue(payload);
     hideModal(); // issueの追加処理が終わったらモーダルを閉じる
@@ -137,7 +130,7 @@ const NewIssue = ({ hideModal, addIssue, profile }) => {
 NewIssue.propTypes = {
   hideModal: PropTypes.func,
   addIssue: PropTypes.func,
-  profile: PropTypes.object
+  profile: PropTypes.object,
 };
 
 export default NewIssue;
