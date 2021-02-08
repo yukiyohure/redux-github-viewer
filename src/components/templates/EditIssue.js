@@ -95,7 +95,7 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
 
   return (
     <Wrapper>
-      <h2>Issueを追加</h2>
+      <h2>Issueを編集</h2>
       <InputSection>
         <Field>
           <FieldLabel>タイトル</FieldLabel>
@@ -133,7 +133,7 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
           textColor="white"
           shadow="primaryShadow"
           hoverShadow="hoverPrimaryShadow"
-          label="作成"
+          label="更新"
           onClick={onSubmit}
         />
         <CloseButton onClick={hideModal}>閉じる</CloseButton>
