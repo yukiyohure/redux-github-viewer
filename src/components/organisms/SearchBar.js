@@ -56,7 +56,7 @@ const SearchBar = ({
               component: (
                 <NewIssue
                   addIssue={addIssue}
-                  hideModal={() => hideModal()}
+                  hideModal={hideModal}
                   profile={profile}
                 />
               ),
