@@ -59,9 +59,9 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
   const [errors, setErrors] = useState({ title: "", description: "" });
 
   const dateObject = new Date();
-  var year = dateObject.getFullYear();
-  var month = ("00" + (dateObject.getMonth() + 1)).slice(-2);
-  var day = ("00" + dateObject.getDate()).slice(-2);
+  const year = dateObject.getFullYear();
+  const month = ("00" + (dateObject.getMonth() + 1)).slice(-2);
+  const day = ("00" + dateObject.getDate()).slice(-2);
 
   const onChangeStatus = (e) => {
     setIssueState(e.target.value);
