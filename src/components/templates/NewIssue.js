@@ -112,15 +112,7 @@ const NewIssue = ({ hideModal, addIssue, profile }) => {
         )}
       </MessageContainer>
       <Footer>
-        <Button
-          hoverBackground="hoverPrimary"
-          background="primary"
-          textColor="white"
-          shadow="primaryShadow"
-          hoverShadow="hoverPrimaryShadow"
-          label="作成"
-          onClick={onSubmit}
-        />
+        <Button styleType="primary" label="作成" onClick={onSubmit} />
         <CloseButton onClick={hideModal}>閉じる</CloseButton>
       </Footer>
     </Wrapper>
