@@ -12,7 +12,7 @@ const BaseButton = styled.button`
   font-size: 1rem;
   border-radius: 6px;
   outline: none;
-  color: ${({ textColor }) => colors[textColor]};
+  color: ${colors.white};
   width: 100%;
   min-width: 100px;
   font-weight: bold;
