@@ -12,51 +12,52 @@ const BaseButton = styled.button`
   font-size: 1rem;
   border-radius: 6px;
   outline: none;
-  background: ${({ background }) => colors[background]};
-  box-shadow: 0 1px ${({ shadow }) => colors[shadow]};
   color: ${({ textColor }) => colors[textColor]};
   width: 100%;
   min-width: 100px;
   font-weight: bold;
-  &:hover {
-    background: ${({ hoverBackground }) => colors[hoverBackground]};
-    box-shadow: 0 1px ${({ hoverShadow }) => colors[hoverShadow]};
-  }
   &:active {
     box-shadow: none;
-    transform: translateY(1px);
+    transform: translateY(2px);
+    &:hover {
+      box-shadow: none;
+    }
   }
 `;
 
-const Button = ({
-  textColor,
-  background,
-  hoverBackground,
-  shadow,
-  hoverShadow,
-  label,
-  onClick,
-}) => {
-  return (
-    <BaseButton
-      textColor={textColor}
-      background={background}
-      hoverBackground={hoverBackground}
-      shadow={shadow}
-      hoverShadow={hoverShadow}
-      onClick={onClick} // 即時巻数を渡すと毎回余計にレンダーしてしまうので関数をそのまま渡してあげる。
-    >
-      {label}
-    </BaseButton>
-  );
+const ButtonPrimary = styled(BaseButton)`
+  background: ${colors.primary};
+  box-shadow: 0 2px ${colors.primaryShadow};
+  color: ${colors.white};
+  &:hover {
+    background: ${colors.hoverPrimary};
+    box-shadow: 0 2px ${colors.hoverPrimaryShadow};
+  }
+`;
+
+const ButtonDanger = styled(BaseButton)`
+  background: ${colors.danger};
+  box-shadow: 0 2px ${colors.dangerShadow};
+  color: ${colors.white};
+  &:hover {
+    background: ${colors.hoverDanger};
+    box-shadow: 0 2px ${colors.hoverDangerShadow};
+  }
+`;
+
+const buttonStyleLists = {
+  default: BaseButton,
+  primary: ButtonPrimary,
+  danger: ButtonDanger,
+};
+
+const Button = ({ styleType, label, onClick }) => {
+  const component = buttonStyleLists[styleType] || buttonStyleLists.default;
+  return React.createElement(component, { onClick }, label);
 };
 
 Button.propTypes = {
-  textColor: PropTypes.string,
-  background: PropTypes.string,
-  hoverBackground: PropTypes.string,
-  shadow: PropTypes.string,
-  hoverShadow: PropTypes.string,
+  styleType: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func,
 };

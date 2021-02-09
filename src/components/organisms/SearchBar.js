@@ -62,22 +62,10 @@ const SearchBar = ({
               ),
             })
           }
-          hoverBackground="hoverPrimary"
-          background="primary"
-          textColor="white"
-          shadow="primaryShadow"
-          hoverShadow="hoverPrimaryShadow"
+          styleType="primary"
           label="New"
         />
-        <Button
-          onClick={onClickDelete}
-          hoverBackground="hoverDanger"
-          background="danger"
-          textColor="white"
-          shadow="dangerShadow"
-          hoverShadow="hoverDangerShadow"
-          label="Delete"
-        />
+        <Button onClick={onClickDelete} styleType="danger" label="Delete" />
       </ActionButtons>
     </Wrapper>
   );

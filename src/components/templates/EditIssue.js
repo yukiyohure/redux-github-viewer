@@ -121,15 +121,7 @@ const EditIssue = ({ issue, hideModal, editIssue }) => {
         )}
       </MessageContainer>
       <Footer>
-        <Button
-          hoverBackground="hoverPrimary"
-          background="primary"
-          textColor="white"
-          shadow="primaryShadow"
-          hoverShadow="hoverPrimaryShadow"
-          label="更新"
-          onClick={onSubmit}
-        />
+        <Button styleType="primary" label="更新" onClick={onSubmit} />
         <CloseButton onClick={hideModal}>閉じる</CloseButton>
       </Footer>
     </Wrapper>
