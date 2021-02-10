@@ -33,7 +33,7 @@ const DropdownMenu = () => {
     document.addEventListener("click", handleClickOutside);
     // アンマウント時にリスナーを削除してメモリに優しく。
     return () => {
-      removeEventListener("click", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []); // 依存を空にすることで、初回レンダー時のみこのuseEffectは実行される
 
