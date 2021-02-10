@@ -52,8 +52,8 @@ const buttonStyleLists = {
 };
 
 const Button = ({ styleType, label, onClick }) => {
-  const component = buttonStyleLists[styleType] || buttonStyleLists.default;
-  return React.createElement(component, { onClick }, label);
+  const Component = buttonStyleLists[styleType] || buttonStyleLists.default;
+  return <Component onClick={onClick}>{label}</Component>
 };
 
 Button.propTypes = {
