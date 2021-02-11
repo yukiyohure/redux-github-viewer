@@ -5,6 +5,8 @@
 実際にGithubのAPIを叩いて取得したデータを用いたものは[別のリポジトリ(👷‍♂️鋭意製作中です👷‍♀️)](https://github.com/yukiyohure/redux-saga-github-viewer)に切り出してあります。  
 デモページは[こちら](https://yukiyohure.github.io/redux-github-viewer/)。
 
+
+
 ## 苦労した箇所は？
 - Redux, React-Reduxの関係を上手く使いこなすこと
 
@@ -16,10 +18,14 @@
 
 - `Button`コンポーネントの作成
   デモページをご覧いただければ分かる通り、このサイトには緑色と赤色の2種類のボタンが出てきます。
-  それを`Button`コンポーネントファイルの中身で動的に「スタイル」「onClickハンドラー」「children」を精製しようと考えていました。
+  それを`Button`コンポーネントファイルの中身で動的に「スタイル」「onClickハンドラー」「children」を生成しようと考えていました。
 
   初めは`props`に色に関する値を`Button`コンポーネントにたくさん渡して上記の考えを実現していましたが、可読性が著しく下がるので実装の方法を変えることにしました。
-  より少ない`props`宣言のみで「スタイル」「onClickハンドラー」「children」を切り分けられるコンポーネントを作成することができました。
+  より少ない`props`宣言のみで「スタイル」「onClickハンドラー」「children」を切り分けられるコンポーネントを作成することができました。  
+  
+  以下にその方法をまとめて記事にしました。  
+  [Reactで汎用性のあるbuttonコンポーネントの作成 with styled-components
+](https://zenn.dev/yukiyohure/articles/32801c0c6bf147)
   
 - ドロップダウンメニューの範囲外のクリックがあった場合に同メニューを閉じる処理
    単純に実装するだけなら比較的簡単に実装できますが、Reactの性質上、　　
