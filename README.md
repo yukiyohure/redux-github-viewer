@@ -68,7 +68,7 @@
   - セレクトボックス
   - テキスト入力欄
 
-## 技術スタック
+## 技術スタックなど
 - [React.js](https://reactjs.org/)
 - [Redux](https://redux.js.org/)
 - [React hooks API](https://reactjs.org/docs/hooks-intro.html) (`useState`, `useEffect`, `useRef`)
@@ -77,6 +77,4 @@
 - [styled-components](https://styled-components.com/docs)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-
-技術ではないけど採用したもの
 - [Atomic Design](https://atomicdesign.bradfrost.com/table-of-contents/)
