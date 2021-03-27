@@ -2,7 +2,7 @@
 
 ## どんなサイト？
 「Githubの状態を表すアプリ」という体で、見た目の部分だけを実装してみました。  
-実際にGithubのAPIを叩いて取得したデータを用いたものは[別のリポジトリ(👷‍♂️鋭意製作中です👷‍♀️)](https://github.com/yukiyohure/redux-saga-github-viewer)に切り出してあります。  
+実際にGithubのAPIを叩いて取得したデータを用いたものは[別のリポジトリ](https://github.com/yukiyohure/redux-saga-github-viewer)に切り出してあります。  
 デモページは[こちら](https://yukiyohure.github.io/redux-github-viewer/)。
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/35441214/107594983-c0a5a300-6c56-11eb-84ef-403a543c21bf.gif)
